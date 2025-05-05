@@ -1,0 +1,229 @@
+<<<<<<< HEAD
+<!-- Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 h-16 bg-primary shadow-md z-50 flex items-center justify-between px-4">
+    <div class="flex items-center">
+        <button id="sidebar-toggle" class="md:hidden mr-3 w-8 h-8 flex items-center justify-center text-white">
+            <i class="ri-menu-line ri-lg"></i>
+        </button>
+        <div class="font-['Pacifico'] text-white text-2xl">VGMS</div>
+    </div>
+    <div class="flex items-center space-x-4">
+        <div class="w-8 h-8 flex items-center justify-center text-white relative">
+            <i class="ri-notification-3-line ri-lg"></i>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+        </div>
+        <div class="w-8 h-8 flex items-center justify-center text-white relative">
+            <i class="ri-message-3-line ri-lg"></i>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">5</span>
+        </div>
+        <div class="profile-dropdown">
+            <button class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden">
+                    <img src="/uploads/<%= user?.profileImage || 'default.jpg' %>" alt="Profile" class="w-full h-full object-cover">
+                </div>
+            </button>
+            <div class="profile-options">
+                <div class="px-4 py-3 border-b border-gray-200">
+                    <p class="text-sm font-medium"><%= user?.fullName || 'Guest' %></p>
+                    <p class="text-xs text-gray-500"> <%= user.role %> </p>
+                </div>
+                <a href="/dashboard/profile" class="flex items-center px-4 py-2 hover:bg-gray-100">
+                    <i class="ri-user-line mr-2"></i>
+                    <span>My Profile</span>
+                </a>
+                <a href="/logout" class="flex items-center px-4 py-2 hover:bg-gray-100 text-red-600">
+                    <i class="ri-logout-box-line mr-2"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+  </nav>
+
+<!-- Sidebar -->
+<aside id="sidebar" class="sidebar fixed left-0 top-16 bottom-0 w-60 bg-white shadow-lg z-40 overflow-y-auto transition-all duration-300">
+  <div class="py-4">
+      <ul>
+          <li>
+              <a href="#" class="sidebar-item active flex items-center px-4 py-3 text-sm">
+                  <div class="w-5 h-5 flex items-center justify-center mr-3">
+                      <i class="ri-dashboard-line"></i>
+                  </div>
+                  <span>Dashboard</span>
+              </a>
+          </li>
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-task-line"></i>
+                </div>
+                <span>My Tasks</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-history-line"></i>
+                </div>
+                <span>Service History</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-car-line"></i>
+                </div>
+                <span>Vehicles</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-file-edit-line"></i>
+                </div>
+                <span>Repair Status Update</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-steering-fill"></i>
+                </div>
+                <span>Parts Used</span>
+            </a>
+        </li> 
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-notification-snooze-fill"></i>
+                </div>
+                <span>Notifications</span>
+            </a>
+        </li> 
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-bill-line"></i>
+                </div>
+                <span>Logout</span>
+            </a>
+        </li> 
+      </ul>
+  </div>
+</aside>
+
+=======
+<!-- Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 h-16 bg-primary shadow-md z-50 flex items-center justify-between px-4">
+    <div class="flex items-center">
+        <button id="sidebar-toggle" class="md:hidden mr-3 w-8 h-8 flex items-center justify-center text-white">
+            <i class="ri-menu-line ri-lg"></i>
+        </button>
+        <div class="font-['Pacifico'] text-white text-2xl">VGMS</div>
+    </div>
+    <div class="flex items-center space-x-4">
+        <div class="w-8 h-8 flex items-center justify-center text-white relative">
+            <i class="ri-notification-3-line ri-lg"></i>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+        </div>
+        <div class="w-8 h-8 flex items-center justify-center text-white relative">
+            <i class="ri-message-3-line ri-lg"></i>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">5</span>
+        </div>
+        <div class="profile-dropdown">
+            <button class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden">
+                    <img src="/uploads/<%= user?.profileImage || 'default.jpg' %>" alt="Profile" class="w-full h-full object-cover">
+                </div>
+            </button>
+            <div class="profile-options">
+                <div class="px-4 py-3 border-b border-gray-200">
+                    <p class="text-sm font-medium"><%= user?.fullName || 'Guest' %></p>
+                    <p class="text-xs text-gray-500"> <%= user.role %> </p>
+                </div>
+                <a href="/dashboard/profile" class="flex items-center px-4 py-2 hover:bg-gray-100">
+                    <i class="ri-user-line mr-2"></i>
+                    <span>My Profile</span>
+                </a>
+                <a href="/logout" class="flex items-center px-4 py-2 hover:bg-gray-100 text-red-600">
+                    <i class="ri-logout-box-line mr-2"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+  </nav>
+
+<!-- Sidebar -->
+<aside id="sidebar" class="sidebar fixed left-0 top-16 bottom-0 w-60 bg-white shadow-lg z-40 overflow-y-auto transition-all duration-300">
+  <div class="py-4">
+      <ul>
+          <li>
+              <a href="#" class="sidebar-item active flex items-center px-4 py-3 text-sm">
+                  <div class="w-5 h-5 flex items-center justify-center mr-3">
+                      <i class="ri-dashboard-line"></i>
+                  </div>
+                  <span>Dashboard</span>
+              </a>
+          </li>
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-task-line"></i>
+                </div>
+                <span>My Tasks</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-history-line"></i>
+                </div>
+                <span>Service History</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-car-line"></i>
+                </div>
+                <span>Vehicles</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-file-edit-line"></i>
+                </div>
+                <span>Repair Status Update</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-steering-fill"></i>
+                </div>
+                <span>Parts Used</span>
+            </a>
+        </li> 
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-notification-snooze-fill"></i>
+                </div>
+                <span>Notifications</span>
+            </a>
+        </li> 
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-bill-line"></i>
+                </div>
+                <span>Logout</span>
+            </a>
+        </li> 
+      </ul>
+  </div>
+</aside>
+
+>>>>>>> 2aa45ee (Initial commit)

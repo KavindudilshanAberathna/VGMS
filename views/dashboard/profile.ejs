@@ -1,0 +1,173 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% if (user && user.role === 'admin') { %>
+    <%- include('../partials/head/admin') %>
+  <% } else if (user && user.role === 'customer') { %>
+    <%- include('../partials/head/customer') %>
+  <% } else if (user && user.role === 'mechanic') { %>
+    <%- include('../partials/head/mechanic') %>
+  <% } %>
+</head>
+<body class="bg-gray-50">
+
+  <% if (user && user.role === 'admin') { %>
+    <%- include('../partials/header/admin') %>
+  <% } else if (user && user.role === 'customer') { %>
+    <%- include('../partials/header/customer') %>
+  <% } else if (user && user.role === 'mechanic') { %>
+    <%- include('../partials/header/mechanic') %>
+  <% } %>
+
+  <main class="pt-16 md:pl-60 min-h-screen">
+    <div class="p-4 md:p-6 max-w-7xl mx-auto">
+    <div class="max-w-2xl mx-auto mt-10 p-6 bg-white shadow rounded">
+      <h2 class="text-2xl font-bold mb-4">My Profile</h2>
+
+      <% if (success) { %>
+        <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4"><%= success %></div>
+      <% } %>
+
+      <% if (error) { %>
+        <div class="bg-red-100 text-red-800 px-4 py-2 rounded mb-4"><%= error %></div>
+      <% } %>
+
+      <!-- Update Profile Info -->
+      <form action="/dashboard/profile" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <div>
+          <label class="block mb-1 font-medium">Full Name</label>
+          <input type="text" name="fullName" value="<%= user.fullName %>" required class="w-full p-2 border rounded">
+        </div>
+
+        <div>
+          <label class="block mb-1 font-medium">Email (read-only)</label>
+          <input type="email" value="<%= user.email %>" disabled class="w-full p-2 border rounded bg-gray-100">
+        </div>
+
+        <div>
+          <label class="block mb-1 font-medium">Current Profile Picture</label><br>
+          <img src="/uploads/<%= user.profileImage %>" alt="Profile" class="w-24 h-24 rounded-full object-cover mb-2 border border-gray-300">
+          <input type="file" name="profileImage" accept="image/*" class="block mt-2">
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Update Profile</button>
+      </form>
+
+      <!-- Change Password -->
+      <h3 class="text-xl font-semibold mt-10 mb-2 border-t pt-6">Change Password</h3>
+
+      <form action="/dashboard/profile/change-password" method="POST" class="space-y-4">
+        <input type="password" name="currentPassword" placeholder="Current Password" required class="w-full p-2 border rounded">
+        <input type="password" name="newPassword" placeholder="New Password" required class="w-full p-2 border rounded">
+        <button type="submit" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">Update Password</button>
+      </form>
+
+      <!-- Delete Account -->
+      <h3 class="text-xl font-semibold mt-10 mb-2 text-red-600 border-t pt-6">Danger Zone</h3>
+
+      <form action="/dashboard/profile/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Delete My Account</button>
+      </form>
+    </div>
+  </div>
+  </main>
+
+  <footer>
+    <% if (user && user.role === 'admin') { %>
+      <%- include('../partials/footer/admin') %>
+    <% } else if (user && user.role === 'customer') { %>
+      <%- include('../partials/footer/customer') %>
+    <% } else if (user && user.role === 'mechanic') { %>
+      <%- include('../partials/footer/mechanic') %>
+    <% } %>
+  </footer>
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% if (user && user.role === 'admin') { %>
+    <%- include('../partials/head/admin') %>
+  <% } else if (user && user.role === 'customer') { %>
+    <%- include('../partials/head/customer') %>
+  <% } else if (user && user.role === 'mechanic') { %>
+    <%- include('../partials/head/mechanic') %>
+  <% } %>
+</head>
+<body class="bg-gray-50">
+
+  <% if (user && user.role === 'admin') { %>
+    <%- include('../partials/header/admin') %>
+  <% } else if (user && user.role === 'customer') { %>
+    <%- include('../partials/header/customer') %>
+  <% } else if (user && user.role === 'mechanic') { %>
+    <%- include('../partials/header/mechanic') %>
+  <% } %>
+
+  <main class="pt-16 md:pl-60 min-h-screen">
+    <div class="p-4 md:p-6 max-w-7xl mx-auto">
+    <div class="max-w-2xl mx-auto mt-10 p-6 bg-white shadow rounded">
+      <h2 class="text-2xl font-bold mb-4">My Profile</h2>
+
+      <% if (success) { %>
+        <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4"><%= success %></div>
+      <% } %>
+
+      <% if (error) { %>
+        <div class="bg-red-100 text-red-800 px-4 py-2 rounded mb-4"><%= error %></div>
+      <% } %>
+
+      <!-- Update Profile Info -->
+      <form action="/dashboard/profile" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <div>
+          <label class="block mb-1 font-medium">Full Name</label>
+          <input type="text" name="fullName" value="<%= user.fullName %>" required class="w-full p-2 border rounded">
+        </div>
+
+        <div>
+          <label class="block mb-1 font-medium">Email (read-only)</label>
+          <input type="email" value="<%= user.email %>" disabled class="w-full p-2 border rounded bg-gray-100">
+        </div>
+
+        <div>
+          <label class="block mb-1 font-medium">Current Profile Picture</label><br>
+          <img src="/uploads/<%= user.profileImage %>" alt="Profile" class="w-24 h-24 rounded-full object-cover mb-2 border border-gray-300">
+          <input type="file" name="profileImage" accept="image/*" class="block mt-2">
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Update Profile</button>
+      </form>
+
+      <!-- Change Password -->
+      <h3 class="text-xl font-semibold mt-10 mb-2 border-t pt-6">Change Password</h3>
+
+      <form action="/dashboard/profile/change-password" method="POST" class="space-y-4">
+        <input type="password" name="currentPassword" placeholder="Current Password" required class="w-full p-2 border rounded">
+        <input type="password" name="newPassword" placeholder="New Password" required class="w-full p-2 border rounded">
+        <button type="submit" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">Update Password</button>
+      </form>
+
+      <!-- Delete Account -->
+      <h3 class="text-xl font-semibold mt-10 mb-2 text-red-600 border-t pt-6">Danger Zone</h3>
+
+      <form action="/dashboard/profile/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Delete My Account</button>
+      </form>
+    </div>
+  </div>
+  </main>
+
+  <footer>
+    <% if (user && user.role === 'admin') { %>
+      <%- include('../partials/footer/admin') %>
+    <% } else if (user && user.role === 'customer') { %>
+      <%- include('../partials/footer/customer') %>
+    <% } else if (user && user.role === 'mechanic') { %>
+      <%- include('../partials/footer/mechanic') %>
+    <% } %>
+  </footer>
+</body>
+</html>
+>>>>>>> 2aa45ee (Initial commit)

@@ -1,0 +1,1199 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer | Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala&family=Noto+Sans+Tamil&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#800000',secondary:'#4B5563'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+          font-family: 'Poppins', 'Noto Sans Sinhala', 'Noto Sans Tamil', sans-serif;
+      }
+      .sinhala {
+          font-family: 'Noto Sans Sinhala', sans-serif;
+      }
+      .tamil {
+          font-family: 'Noto Sans Tamil', sans-serif;
+      }
+      .sidebar-item.active {
+          background-color: rgba(128, 0, 0, 0.1);
+          color: #800000;
+          border-left: 3px solid #800000;
+      }
+      input[type="checkbox"] {
+          appearance: none;
+          -webkit-appearance: none;
+          width: 18px;
+          height: 18px;
+          border: 2px solid #d1d5db;
+          border-radius: 4px;
+          outline: none;
+          cursor: pointer;
+          position: relative;
+      }
+      input[type="checkbox"]:checked {
+          background-color: #800000;
+          border-color: #800000;
+      }
+      input[type="checkbox"]:checked::before {
+          content: "";
+          position: absolute;
+          top: 2px;
+          left: 5px;
+          width: 6px;
+          height: 10px;
+          border-right: 2px solid white;
+          border-bottom: 2px solid white;
+          transform: rotate(45deg);
+      }
+      .language-dropdown {
+          position: relative;
+      }
+      .language-options {
+          display: none;
+          position: absolute;
+          top: 100%;
+          right: 0;
+          background-color: white;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          z-index: 50;
+          min-width: 150px;
+      }
+      .language-dropdown:hover .language-options {
+          display: block;
+      }
+      .profile-dropdown {
+          position: relative;
+      }
+      .profile-options {
+          display: none;
+          position: absolute;
+          top: 100%;
+          right: 0;
+          background-color: white;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          z-index: 50;
+          min-width: 200px;
+      }
+      .profile-dropdown:hover .profile-options {
+          display: block;
+      }
+      @media (max-width: 768px) {
+          .sidebar {
+              transform: translateX(-100%);
+              transition: transform 0.3s ease;
+          }
+          .sidebar.open {
+              transform: translateX(0);
+          }
+      }
+      ::-webkit-scrollbar {
+          width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+          background: #d1d5db;
+          border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+          background: #9ca3af;
+      }
+  </style>
+  </head>
+
+  <body class="bg-gray-50">
+    <!-- Navigation Bar -->
+  <nav class="fixed top-0 left-0 right-0 h-16 bg-primary shadow-md z-50 flex items-center justify-between px-4">
+    <div class="flex items-center">
+        <button id="sidebar-toggle" class="md:hidden mr-3 w-8 h-8 flex items-center justify-center text-white">
+            <i class="ri-menu-line ri-lg"></i>
+        </button>
+        <div class="font-['Pacifico'] text-white text-2xl">VGMS</div>
+    </div>
+    <div class="flex items-center space-x-4">
+        <div class="w-8 h-8 flex items-center justify-center text-white relative">
+            <i class="ri-notification-3-line ri-lg"></i>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+        </div>
+        <div class="w-8 h-8 flex items-center justify-center text-white relative">
+            <i class="ri-message-3-line ri-lg"></i>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">5</span>
+        </div>
+        <div class="profile-dropdown">
+            <button class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden">
+                    <img src="/uploads/<%= user && user.profileImage ? user.profileImage : 'default.jpg' %>" alt="Profile" class="w-full h-full object-cover">
+                </div>
+            </button>
+            <div class="profile-options">
+                <div class="px-4 py-3 border-b border-gray-200">
+                    <p class="text-sm font-medium"><%= user?.fullName || 'Guest' %></p>
+                    <p class="text-xs text-gray-500"> <%= user && user.role ? user.role : '' %> </p>
+                </div>
+                <a href="/dashboard/profile" class="flex items-center px-4 py-2 hover:bg-gray-100">
+                    <i class="ri-user-line mr-2"></i>
+                    <span>My Profile</span>
+                </a>
+                <a href="/logout" class="flex items-center px-4 py-2 hover:bg-gray-100 text-red-600">
+                    <i class="ri-logout-box-line mr-2"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+  </nav>
+  
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar fixed left-0 top-16 bottom-0 w-60 bg-white shadow-lg z-40 overflow-y-auto transition-all duration-300">
+  <div class="py-4">
+      <ul>
+          <li>
+              <a href="" class="sidebar-item  flex items-center px-4 py-3 text-sm">
+                  <div class="w-5 h-5 flex items-center justify-center mr-3">
+                      <i class="ri-dashboard-line"></i>
+                  </div>
+                  <span>Dashboard</span>
+              </a>
+          </li>
+        <li>
+            <a href="" class="sidebar-item active flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                <i class="ri-calendar-check-line"></i>
+                </div>
+                <span>Book appoinment</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                <i class="ri-calendar-check-line"></i>
+                </div>
+                <span>My appoinments</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                <i class="ri-car-line"></i>
+                </div>
+                <span>My Vehicles</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-notification-snooze-fill"></i>
+                </div>
+                <span>Notifications</span>
+            </a>
+        </li> 
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-history-line"></i>
+                </div>
+                <span>Service History</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-store-3-line"></i>
+                    </div>
+                    <span>Order Genuine Parts</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-wallet-3-fill"></i>
+                </div>
+                <span>Invoices & Payments</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-line-chart-line"></i>
+                </div>
+                <span>Repair Status</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-feedback-line"></i>
+                </div>
+                <span>Feedback</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-logout-box-line"></i>
+                </div>
+                <span>Log Out</span>
+            </a>
+        </li>
+         
+      </ul>
+  </div>
+  </aside>
+
+
+
+
+<div class="min-h-screen flex items-center justify-center bg-white px-4">
+    <form action="/appointments/book" method="POST" class="w-full max-w-md bg-[#800000] text-white p-8 rounded-2xl shadow-xl space-y-6">
+      <h2 class="text-2xl font-bold text-center">Book Your Appointment</h2>
+  
+      <div>
+        <label for="vehicleNumber" class="block mb-1 text-sm font-medium">Vehicle Number</label>
+        <input
+          type="text"
+          name="vehicleNumber"
+          id="vehicleNumber"
+          placeholder="Enter vehicle number"
+          required
+          class="w-full px-4 py-2 rounded-lg bg-white text-[#800000] placeholder:text-[#800000]/70 focus:outline-none focus:ring-2 focus:ring-white"
+        />
+      </div>
+  
+      <div>
+        <label for="date" class="block mb-1 text-sm font-medium">Date</label>
+        <input
+          type="date"
+          name="date"
+          id="date"
+          required
+          class="w-full px-4 py-2 rounded-lg bg-white text-[#800000] focus:outline-none focus:ring-2 focus:ring-white"
+        />
+      </div>
+  
+      <div>
+        <label for="time" class="block mb-1 text-sm font-medium">Time</label>
+        <input
+          type="time"
+          name="time"
+          id="time"
+          required
+          class="w-full px-4 py-2 rounded-lg bg-white text-[#800000] focus:outline-none focus:ring-2 focus:ring-white"
+        />
+      </div>
+  
+      <div>
+        <label for="serviceType" class="block mb-1 text-sm font-medium">Service Type</label>
+        <select
+          name="serviceType"
+          id="serviceType"
+          required
+          class="w-full px-4 py-2 rounded-lg bg-white text-[#800000] focus:outline-none focus:ring-2 focus:ring-white"
+        >
+          <option value="Oil Change">Oil Change</option>
+          <option value="Tire Rotation">Tire Rotation</option>
+          <option value="General Checkup">General Checkup</option>
+        </select>
+      </div>
+  
+      <button
+        type="submit"
+        class="w-full bg-white text-[#800000] font-semibold py-2 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+      >
+        Book Appointment
+      </button>
+    </form>
+</div>
+  
+
+<footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sidebar toggle
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        
+        if (sidebarToggle && sidebar) {
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+            });
+        }
+    });
+</script>
+<script>
+    //current date and time display
+    function updateDateTime() {
+const now = new Date().toLocaleString();
+document.getElementById('datetime').textContent = `${now}`;
+}
+
+updateDateTime(); // Show immediately
+setInterval(updateDateTime, 1000); // Update every 1 second
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Step navigation
+        const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
+        let currentStep = 0;
+        
+        const nextStepBtn = document.getElementById('next-step');
+        const prevStepBtn = document.getElementById('prev-step');
+        const submitBookingBtn = document.getElementById('submit-booking');
+        
+        // Initialize step display
+        updateStepDisplay();
+        
+        // Next button click
+        nextStepBtn.addEventListener('click', function() {
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                updateStepDisplay();
+            }
+        });
+        
+        // Previous button click
+        prevStepBtn.addEventListener('click', function() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateStepDisplay();
+            }
+        });
+        
+        // Submit booking button click
+        submitBookingBtn.addEventListener('click', function() {
+            // Show success message or redirect
+            alert('Booking confirmed! You will receive a confirmation email shortly.');
+            // Redirect to dashboard or confirmation page
+            window.location.href = 'https://readdy.ai/home/af6b7dae-c8e5-48be-bd2d-5302a03eacd6/49204c0b-fc3f-47f4-8e90-8b7fa1cfac3c';
+        });
+        
+        // Update step display based on current step
+        function updateStepDisplay() {
+            // Hide all steps
+            steps.forEach(step => {
+                document.getElementById(step).classList.add('hidden');
+            });
+            
+            // Show current step
+            document.getElementById(steps[currentStep]).classList.remove('hidden');
+            
+            // Update progress indicators
+            const progressSteps = document.querySelectorAll('.progress-step');
+            progressSteps.forEach((step, index) => {
+                const stepNumber = step.querySelector('.progress-step-number');
+                
+                if (index <= currentStep) {
+                    step.classList.add('active');
+                    stepNumber.classList.remove('bg-gray-200', 'text-gray-600');
+                    stepNumber.classList.add('bg-primary', 'text-white');
+                } else {
+                    step.classList.remove('active');
+                    stepNumber.classList.remove('bg-primary', 'text-white');
+                    stepNumber.classList.add('bg-gray-200', 'text-gray-600');
+                }
+            });
+            
+            // Show/hide navigation buttons
+            if (currentStep === 0) {
+                prevStepBtn.classList.add('hidden');
+            } else {
+                prevStepBtn.classList.remove('hidden');
+            }
+            
+            if (currentStep === steps.length - 1) {
+                nextStepBtn.classList.add('hidden');
+                submitBookingBtn.classList.remove('hidden');
+            } else {
+                nextStepBtn.classList.remove('hidden');
+                submitBookingBtn.classList.add('hidden');
+            }
+        }
+        
+        // Service tab switching
+        const serviceTabs = document.querySelectorAll('.service-tab');
+        serviceTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                serviceTabs.forEach(t => {
+                    t.classList.remove('text-primary', 'border-primary');
+                    t.classList.add('text-gray-500', 'hover:text-gray-700');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.remove('text-gray-500', 'hover:text-gray-700');
+                this.classList.add('text-primary', 'border-primary', 'border-b-2');
+                
+                // Hide all tab content
+                document.querySelectorAll('.service-tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Show selected tab content
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-content`).classList.remove('hidden');
+            });
+        });
+        
+        // Service selection
+        const serviceCheckboxes = document.querySelectorAll('input[name="service"]');
+        serviceCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateSelectedServices);
+        });
+        
+        function updateSelectedServices() {
+            const selectedServices = document.querySelectorAll('input[name="service"]:checked');
+            const selectedServicesList = document.getElementById('selected-services-list');
+            const totalDurationEl = document.getElementById('total-duration');
+            const totalCostEl = document.getElementById('total-cost');
+            
+            if (selectedServices.length === 0) {
+                selectedServicesList.innerHTML = '<p class="text-sm text-gray-500">No services selected</p>';
+                totalDurationEl.textContent = '0 min';
+                totalCostEl.textContent = '$0.00';
+                return;
+            }
+            
+            let totalDuration = 0;
+            let totalCost = 0;
+            let servicesHTML = '';
+            
+            selectedServices.forEach(service => {
+                const name = service.getAttribute('data-name');
+                const duration = parseInt(service.getAttribute('data-duration'));
+                const price = parseFloat(service.getAttribute('data-price'));
+                
+                totalDuration += duration;
+                totalCost += price;
+                
+                servicesHTML += `
+                    <div class="flex justify-between">
+                        <span class="text-sm">${name}</span>
+                        <span class="text-sm font-medium">$${price.toFixed(2)}</span>
+                    </div>
+                `;
+            });
+            
+            selectedServicesList.innerHTML = servicesHTML;
+            
+            // Format duration
+            let durationText = '';
+            if (totalDuration >= 60) {
+                const hours = Math.floor(totalDuration / 60);
+                const minutes = totalDuration % 60;
+                durationText = `${hours} ${hours === 1 ? 'hour' : 'hours'}`;
+                if (minutes > 0) {
+                    durationText += ` ${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`;
+                }
+            } else {
+                durationText = `${totalDuration} ${totalDuration === 1 ? 'minute' : 'minutes'}`;
+            }
+            
+            totalDurationEl.textContent = durationText;
+            totalCostEl.textContent = `$${totalCost.toFixed(2)}`;
+            
+            // Update summary duration in step 3
+            if (document.getElementById('summary-duration')) {
+                document.getElementById('summary-duration').textContent = durationText;
+            }
+        }
+        
+        // Date picker functionality
+        const datePickerDays = document.querySelectorAll('.date-picker-day:not(.disabled)');
+        datePickerDays.forEach(day => {
+            day.addEventListener('click', function() {
+                // Remove selected class from all days
+                datePickerDays.forEach(d => d.classList.remove('selected'));
+                
+                // Add selected class to clicked day
+                this.classList.add('selected');
+            });
+        });
+        
+        // Time slot selection
+        const timeSlots = document.querySelectorAll('.time-slot:not(.disabled)');
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', function() {
+                // Remove selected class from all time slots
+                timeSlots.forEach(s => s.classList.remove('selected'));
+                
+                // Add selected class to clicked time slot
+                this.classList.add('selected');
+            });
+        });
+        
+        // Vehicle selection
+        const vehicleCards = document.querySelectorAll('.vehicle-card');
+        vehicleCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const radioBtn = this.querySelector('input[type="radio"]');
+                radioBtn.checked = true;
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const dashboardSection = document.getElementById('dashboard-section');
+      const appointmentSection = document.getElementById('book-appointment-section');
+      
+
+  
+      const bookAppointmentBtn = document.querySelector('a:has(i.ri-calendar-check-line)');
+      const dashboardBtn = document.querySelector('a:has(i.ri-dashboard-line)');
+      const myAppointmentBtn = document.querySelector('a:has(i.ri-dashboard-line)');
+      const sidebarLinks = document.querySelectorAll('.sidebar-link');
+  
+      // Function to toggle active class and handle hover states
+      function setActive(link, otherLink) {
+        // Remove active class and add hover for the other link
+        otherLink.classList.remove('active');
+        otherLink.classList.add('hover:bg-gray-100'); // Add hover effect for the non-active link
+  
+        // Remove hover class from the active link
+        link.classList.remove('hover:bg-gray-100');
+  
+        // Add active class to the clicked link
+        link.classList.add('active');
+      }
+  
+      // Book Appointment Button Clicked
+      bookAppointmentBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Switch sections
+        dashboardSection.classList.add('hidden');
+        appointmentSection.classList.remove('hidden');
+  
+        // Set Active Class
+        setActive(bookAppointmentBtn, dashboardBtn);
+      });
+      
+      // Dashboard Button Clicked
+      dashboardBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+  
+        // Switch sections
+        appointmentSection.classList.add('hidden');
+        dashboardSection.classList.remove('hidden');
+  
+        // Set Active Class
+        setActive(dashboardBtn, bookAppointmentBtn);
+      });
+    });
+  </script>
+  
+</footer>
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer | Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala&family=Noto+Sans+Tamil&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#800000',secondary:'#4B5563'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+          font-family: 'Poppins', 'Noto Sans Sinhala', 'Noto Sans Tamil', sans-serif;
+      }
+      .sinhala {
+          font-family: 'Noto Sans Sinhala', sans-serif;
+      }
+      .tamil {
+          font-family: 'Noto Sans Tamil', sans-serif;
+      }
+      .sidebar-item.active {
+          background-color: rgba(128, 0, 0, 0.1);
+          color: #800000;
+          border-left: 3px solid #800000;
+      }
+      input[type="checkbox"] {
+          appearance: none;
+          -webkit-appearance: none;
+          width: 18px;
+          height: 18px;
+          border: 2px solid #d1d5db;
+          border-radius: 4px;
+          outline: none;
+          cursor: pointer;
+          position: relative;
+      }
+      input[type="checkbox"]:checked {
+          background-color: #800000;
+          border-color: #800000;
+      }
+      input[type="checkbox"]:checked::before {
+          content: "";
+          position: absolute;
+          top: 2px;
+          left: 5px;
+          width: 6px;
+          height: 10px;
+          border-right: 2px solid white;
+          border-bottom: 2px solid white;
+          transform: rotate(45deg);
+      }
+      .language-dropdown {
+          position: relative;
+      }
+      .language-options {
+          display: none;
+          position: absolute;
+          top: 100%;
+          right: 0;
+          background-color: white;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          z-index: 50;
+          min-width: 150px;
+      }
+      .language-dropdown:hover .language-options {
+          display: block;
+      }
+      .profile-dropdown {
+          position: relative;
+      }
+      .profile-options {
+          display: none;
+          position: absolute;
+          top: 100%;
+          right: 0;
+          background-color: white;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          z-index: 50;
+          min-width: 200px;
+      }
+      .profile-dropdown:hover .profile-options {
+          display: block;
+      }
+      @media (max-width: 768px) {
+          .sidebar {
+              transform: translateX(-100%);
+              transition: transform 0.3s ease;
+          }
+          .sidebar.open {
+              transform: translateX(0);
+          }
+      }
+      ::-webkit-scrollbar {
+          width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+          background: #d1d5db;
+          border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+          background: #9ca3af;
+      }
+  </style>
+  </head>
+
+  <body class="bg-gray-50">
+    <!-- Navigation Bar -->
+  <nav class="fixed top-0 left-0 right-0 h-16 bg-primary shadow-md z-50 flex items-center justify-between px-4">
+    <div class="flex items-center">
+        <button id="sidebar-toggle" class="md:hidden mr-3 w-8 h-8 flex items-center justify-center text-white">
+            <i class="ri-menu-line ri-lg"></i>
+        </button>
+        <div class="font-['Pacifico'] text-white text-2xl">VGMS</div>
+    </div>
+    <div class="flex items-center space-x-4">
+        <div class="w-8 h-8 flex items-center justify-center text-white relative">
+            <i class="ri-notification-3-line ri-lg"></i>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+        </div>
+        <div class="w-8 h-8 flex items-center justify-center text-white relative">
+            <i class="ri-message-3-line ri-lg"></i>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">5</span>
+        </div>
+        <div class="profile-dropdown">
+            <button class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden">
+                    <img src="/uploads/<%= user && user.profileImage ? user.profileImage : 'default.jpg' %>" alt="Profile" class="w-full h-full object-cover">
+                </div>
+            </button>
+            <div class="profile-options">
+                <div class="px-4 py-3 border-b border-gray-200">
+                    <p class="text-sm font-medium"><%= user?.fullName || 'Guest' %></p>
+                    <p class="text-xs text-gray-500"> <%= user && user.role ? user.role : '' %> </p>
+                </div>
+                <a href="/dashboard/profile" class="flex items-center px-4 py-2 hover:bg-gray-100">
+                    <i class="ri-user-line mr-2"></i>
+                    <span>My Profile</span>
+                </a>
+                <a href="/logout" class="flex items-center px-4 py-2 hover:bg-gray-100 text-red-600">
+                    <i class="ri-logout-box-line mr-2"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+  </nav>
+  
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar fixed left-0 top-16 bottom-0 w-60 bg-white shadow-lg z-40 overflow-y-auto transition-all duration-300">
+  <div class="py-4">
+      <ul>
+          <li>
+              <a href="" class="sidebar-item  flex items-center px-4 py-3 text-sm">
+                  <div class="w-5 h-5 flex items-center justify-center mr-3">
+                      <i class="ri-dashboard-line"></i>
+                  </div>
+                  <span>Dashboard</span>
+              </a>
+          </li>
+        <li>
+            <a href="" class="sidebar-item active flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                <i class="ri-calendar-check-line"></i>
+                </div>
+                <span>Book appoinment</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                <i class="ri-calendar-check-line"></i>
+                </div>
+                <span>My appoinments</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                <i class="ri-car-line"></i>
+                </div>
+                <span>My Vehicles</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-notification-snooze-fill"></i>
+                </div>
+                <span>Notifications</span>
+            </a>
+        </li> 
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-history-line"></i>
+                </div>
+                <span>Service History</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-store-3-line"></i>
+                    </div>
+                    <span>Order Genuine Parts</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-wallet-3-fill"></i>
+                </div>
+                <span>Invoices & Payments</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-line-chart-line"></i>
+                </div>
+                <span>Repair Status</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-feedback-line"></i>
+                </div>
+                <span>Feedback</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="sidebar-item flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                    <i class="ri-logout-box-line"></i>
+                </div>
+                <span>Log Out</span>
+            </a>
+        </li>
+         
+      </ul>
+  </div>
+  </aside>
+
+
+
+
+<div class="min-h-screen flex items-center justify-center bg-white px-4">
+    <form action="/appointments/book" method="POST" class="w-full max-w-md bg-[#800000] text-white p-8 rounded-2xl shadow-xl space-y-6">
+      <h2 class="text-2xl font-bold text-center">Book Your Appointment</h2>
+  
+      <div>
+        <label for="vehicleNumber" class="block mb-1 text-sm font-medium">Vehicle Number</label>
+        <input
+          type="text"
+          name="vehicleNumber"
+          id="vehicleNumber"
+          placeholder="Enter vehicle number"
+          required
+          class="w-full px-4 py-2 rounded-lg bg-white text-[#800000] placeholder:text-[#800000]/70 focus:outline-none focus:ring-2 focus:ring-white"
+        />
+      </div>
+  
+      <div>
+        <label for="date" class="block mb-1 text-sm font-medium">Date</label>
+        <input
+          type="date"
+          name="date"
+          id="date"
+          required
+          class="w-full px-4 py-2 rounded-lg bg-white text-[#800000] focus:outline-none focus:ring-2 focus:ring-white"
+        />
+      </div>
+  
+      <div>
+        <label for="time" class="block mb-1 text-sm font-medium">Time</label>
+        <input
+          type="time"
+          name="time"
+          id="time"
+          required
+          class="w-full px-4 py-2 rounded-lg bg-white text-[#800000] focus:outline-none focus:ring-2 focus:ring-white"
+        />
+      </div>
+  
+      <div>
+        <label for="serviceType" class="block mb-1 text-sm font-medium">Service Type</label>
+        <select
+          name="serviceType"
+          id="serviceType"
+          required
+          class="w-full px-4 py-2 rounded-lg bg-white text-[#800000] focus:outline-none focus:ring-2 focus:ring-white"
+        >
+          <option value="Oil Change">Oil Change</option>
+          <option value="Tire Rotation">Tire Rotation</option>
+          <option value="General Checkup">General Checkup</option>
+        </select>
+      </div>
+  
+      <button
+        type="submit"
+        class="w-full bg-white text-[#800000] font-semibold py-2 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+      >
+        Book Appointment
+      </button>
+    </form>
+</div>
+  
+
+<footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sidebar toggle
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        
+        if (sidebarToggle && sidebar) {
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+            });
+        }
+    });
+</script>
+<script>
+    //current date and time display
+    function updateDateTime() {
+const now = new Date().toLocaleString();
+document.getElementById('datetime').textContent = `${now}`;
+}
+
+updateDateTime(); // Show immediately
+setInterval(updateDateTime, 1000); // Update every 1 second
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Step navigation
+        const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
+        let currentStep = 0;
+        
+        const nextStepBtn = document.getElementById('next-step');
+        const prevStepBtn = document.getElementById('prev-step');
+        const submitBookingBtn = document.getElementById('submit-booking');
+        
+        // Initialize step display
+        updateStepDisplay();
+        
+        // Next button click
+        nextStepBtn.addEventListener('click', function() {
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                updateStepDisplay();
+            }
+        });
+        
+        // Previous button click
+        prevStepBtn.addEventListener('click', function() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateStepDisplay();
+            }
+        });
+        
+        // Submit booking button click
+        submitBookingBtn.addEventListener('click', function() {
+            // Show success message or redirect
+            alert('Booking confirmed! You will receive a confirmation email shortly.');
+            // Redirect to dashboard or confirmation page
+            window.location.href = 'https://readdy.ai/home/af6b7dae-c8e5-48be-bd2d-5302a03eacd6/49204c0b-fc3f-47f4-8e90-8b7fa1cfac3c';
+        });
+        
+        // Update step display based on current step
+        function updateStepDisplay() {
+            // Hide all steps
+            steps.forEach(step => {
+                document.getElementById(step).classList.add('hidden');
+            });
+            
+            // Show current step
+            document.getElementById(steps[currentStep]).classList.remove('hidden');
+            
+            // Update progress indicators
+            const progressSteps = document.querySelectorAll('.progress-step');
+            progressSteps.forEach((step, index) => {
+                const stepNumber = step.querySelector('.progress-step-number');
+                
+                if (index <= currentStep) {
+                    step.classList.add('active');
+                    stepNumber.classList.remove('bg-gray-200', 'text-gray-600');
+                    stepNumber.classList.add('bg-primary', 'text-white');
+                } else {
+                    step.classList.remove('active');
+                    stepNumber.classList.remove('bg-primary', 'text-white');
+                    stepNumber.classList.add('bg-gray-200', 'text-gray-600');
+                }
+            });
+            
+            // Show/hide navigation buttons
+            if (currentStep === 0) {
+                prevStepBtn.classList.add('hidden');
+            } else {
+                prevStepBtn.classList.remove('hidden');
+            }
+            
+            if (currentStep === steps.length - 1) {
+                nextStepBtn.classList.add('hidden');
+                submitBookingBtn.classList.remove('hidden');
+            } else {
+                nextStepBtn.classList.remove('hidden');
+                submitBookingBtn.classList.add('hidden');
+            }
+        }
+        
+        // Service tab switching
+        const serviceTabs = document.querySelectorAll('.service-tab');
+        serviceTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                serviceTabs.forEach(t => {
+                    t.classList.remove('text-primary', 'border-primary');
+                    t.classList.add('text-gray-500', 'hover:text-gray-700');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.remove('text-gray-500', 'hover:text-gray-700');
+                this.classList.add('text-primary', 'border-primary', 'border-b-2');
+                
+                // Hide all tab content
+                document.querySelectorAll('.service-tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Show selected tab content
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-content`).classList.remove('hidden');
+            });
+        });
+        
+        // Service selection
+        const serviceCheckboxes = document.querySelectorAll('input[name="service"]');
+        serviceCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateSelectedServices);
+        });
+        
+        function updateSelectedServices() {
+            const selectedServices = document.querySelectorAll('input[name="service"]:checked');
+            const selectedServicesList = document.getElementById('selected-services-list');
+            const totalDurationEl = document.getElementById('total-duration');
+            const totalCostEl = document.getElementById('total-cost');
+            
+            if (selectedServices.length === 0) {
+                selectedServicesList.innerHTML = '<p class="text-sm text-gray-500">No services selected</p>';
+                totalDurationEl.textContent = '0 min';
+                totalCostEl.textContent = '$0.00';
+                return;
+            }
+            
+            let totalDuration = 0;
+            let totalCost = 0;
+            let servicesHTML = '';
+            
+            selectedServices.forEach(service => {
+                const name = service.getAttribute('data-name');
+                const duration = parseInt(service.getAttribute('data-duration'));
+                const price = parseFloat(service.getAttribute('data-price'));
+                
+                totalDuration += duration;
+                totalCost += price;
+                
+                servicesHTML += `
+                    <div class="flex justify-between">
+                        <span class="text-sm">${name}</span>
+                        <span class="text-sm font-medium">$${price.toFixed(2)}</span>
+                    </div>
+                `;
+            });
+            
+            selectedServicesList.innerHTML = servicesHTML;
+            
+            // Format duration
+            let durationText = '';
+            if (totalDuration >= 60) {
+                const hours = Math.floor(totalDuration / 60);
+                const minutes = totalDuration % 60;
+                durationText = `${hours} ${hours === 1 ? 'hour' : 'hours'}`;
+                if (minutes > 0) {
+                    durationText += ` ${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`;
+                }
+            } else {
+                durationText = `${totalDuration} ${totalDuration === 1 ? 'minute' : 'minutes'}`;
+            }
+            
+            totalDurationEl.textContent = durationText;
+            totalCostEl.textContent = `$${totalCost.toFixed(2)}`;
+            
+            // Update summary duration in step 3
+            if (document.getElementById('summary-duration')) {
+                document.getElementById('summary-duration').textContent = durationText;
+            }
+        }
+        
+        // Date picker functionality
+        const datePickerDays = document.querySelectorAll('.date-picker-day:not(.disabled)');
+        datePickerDays.forEach(day => {
+            day.addEventListener('click', function() {
+                // Remove selected class from all days
+                datePickerDays.forEach(d => d.classList.remove('selected'));
+                
+                // Add selected class to clicked day
+                this.classList.add('selected');
+            });
+        });
+        
+        // Time slot selection
+        const timeSlots = document.querySelectorAll('.time-slot:not(.disabled)');
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', function() {
+                // Remove selected class from all time slots
+                timeSlots.forEach(s => s.classList.remove('selected'));
+                
+                // Add selected class to clicked time slot
+                this.classList.add('selected');
+            });
+        });
+        
+        // Vehicle selection
+        const vehicleCards = document.querySelectorAll('.vehicle-card');
+        vehicleCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const radioBtn = this.querySelector('input[type="radio"]');
+                radioBtn.checked = true;
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const dashboardSection = document.getElementById('dashboard-section');
+      const appointmentSection = document.getElementById('book-appointment-section');
+      
+
+  
+      const bookAppointmentBtn = document.querySelector('a:has(i.ri-calendar-check-line)');
+      const dashboardBtn = document.querySelector('a:has(i.ri-dashboard-line)');
+      const myAppointmentBtn = document.querySelector('a:has(i.ri-dashboard-line)');
+      const sidebarLinks = document.querySelectorAll('.sidebar-link');
+  
+      // Function to toggle active class and handle hover states
+      function setActive(link, otherLink) {
+        // Remove active class and add hover for the other link
+        otherLink.classList.remove('active');
+        otherLink.classList.add('hover:bg-gray-100'); // Add hover effect for the non-active link
+  
+        // Remove hover class from the active link
+        link.classList.remove('hover:bg-gray-100');
+  
+        // Add active class to the clicked link
+        link.classList.add('active');
+      }
+  
+      // Book Appointment Button Clicked
+      bookAppointmentBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Switch sections
+        dashboardSection.classList.add('hidden');
+        appointmentSection.classList.remove('hidden');
+  
+        // Set Active Class
+        setActive(bookAppointmentBtn, dashboardBtn);
+      });
+      
+      // Dashboard Button Clicked
+      dashboardBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+  
+        // Switch sections
+        appointmentSection.classList.add('hidden');
+        dashboardSection.classList.remove('hidden');
+  
+        // Set Active Class
+        setActive(dashboardBtn, bookAppointmentBtn);
+      });
+    });
+  </script>
+  
+</footer>
+</body>
+</html>
+>>>>>>> 2aa45ee (Initial commit)

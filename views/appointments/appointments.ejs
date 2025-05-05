@@ -1,0 +1,67 @@
+<<<<<<< HEAD
+<h2>All Appointments</h2>
+<table>
+  <tr>
+    <th>Customer</th>
+    <th>Vehicle</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Service</th>
+    <th>Assigned Mechanic</th>
+    <th>Assign</th>
+  </tr>
+  <% appointments.forEach(app => { %>
+    <tr>
+      <td><%= app.vehicleNumber %></td>
+      <td><%= app.date %></td>
+      <td><%= app.time %></td>
+      <td><%= app.serviceType %></td>
+      <td><%= app.status %></td>
+      <td><%= app.mechanic?.fullName || 'None' %></td>
+      <td>
+        <form action="/appointments/admin/<%= app._id %>/assign" method="POST">
+          <select name="mechanicId">
+            <% mechanics.forEach(mech => { %>
+              <option value="<%= mech._id %>"><%= mech.fullName %></option>
+            <% }) %>
+          </select>
+          <button type="submit">Assign</button>
+        </form>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+=======
+<h2>All Appointments</h2>
+<table>
+  <tr>
+    <th>Customer</th>
+    <th>Vehicle</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Service</th>
+    <th>Assigned Mechanic</th>
+    <th>Assign</th>
+  </tr>
+  <% appointments.forEach(app => { %>
+    <tr>
+      <td><%= app.vehicleNumber %></td>
+      <td><%= app.date %></td>
+      <td><%= app.time %></td>
+      <td><%= app.serviceType %></td>
+      <td><%= app.status %></td>
+      <td><%= app.mechanic?.fullName || 'None' %></td>
+      <td>
+        <form action="/appointments/admin/<%= app._id %>/assign" method="POST">
+          <select name="mechanicId">
+            <% mechanics.forEach(mech => { %>
+              <option value="<%= mech._id %>"><%= mech.fullName %></option>
+            <% }) %>
+          </select>
+          <button type="submit">Assign</button>
+        </form>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+>>>>>>> 2aa45ee (Initial commit)

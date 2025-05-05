@@ -1,0 +1,1001 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liya Motors | Home </title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#F90808',secondary:''},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+scroll-behavior: smooth;
+}
+input:focus, textarea:focus {
+outline: none;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.hero-section {
+background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('https://readdy.ai/api/search-image?query=modern%20car%20garage%20workshop%20with%20mechanics%20working%20on%20luxury%20cars%2C%20professional%20environment%2C%20clean%20and%20organized%20space%2C%20high-end%20tools%20and%20equipment%2C%20bright%20lighting%2C%20spacious%20interior%2C%20premium%20automotive%20service%20center&width=1920&height=1080&seq=1&orientation=landscape');
+background-size: cover;
+background-position: center;
+}
+.feature-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.testimonial-card {
+transition: all 0.3s ease;
+}
+.testimonial-card:hover {
+transform: translateY(-5px);
+}
+.custom-checkbox {
+position: relative;
+cursor: pointer;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+}
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #2d2d2d;
+border-radius: 4px;
+border: 1px solid #444;
+}
+.custom-checkbox:hover input ~ .checkmark {
+background-color: #333;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #800000;
+border: none;
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+}
+.custom-checkbox .checkmark:after {
+left: 7px;
+top: 3px;
+width: 6px;
+height: 12px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+</style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+<!-- Header/Navigation -->
+<header class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+<div class="container mx-auto px-6 py-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<a href="#" class="text-2xl font-['Pacifico'] text-gray-800">Liya Motors</a>
+</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a href="/" class="text-gray-700 hover:text-primary font-medium transition-colors">Home</a>
+<a href="" class="text-gray-700 hover:text-primary font-medium transition-colors">About Us</a>
+<a href="" class="text-gray-700 hover:text-primary font-medium transition-colors">Services</a>
+<a href="" class="text-gray-700 hover:text-primary font-medium transition-colors">Contact Us</a>
+<a href="/login" class="text-gray-700 hover:text-primary font-medium transition-colors">Login</a>
+<a href="/Register" class="text-white px-6 py-2 !rounded-button font-medium transition-colors whitespace-nowrap" style="background-color: #800000;">Register</a>
+
+</nav>
+<div class="md:hidden flex items-center">
+<button class="text-gray-700 hover:text-primary w-10 h-10 flex items-center justify-center">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="hero-section min-h-screen flex items-center pt-20">
+<div class="container mx-auto px-6 py-20 w-full">
+<div class="max-w-2xl">
+<h1 class="text-5xl font-bold text-white leading-tight mb-6">Streamline Your Garage Services</h1>
+<p class="text-xl text-gray-200 mb-8">Book appointments, track repairs, and manage vehicles — all online.</p>
+<div class="flex flex-wrap gap-4">
+    <a href="/Register" class="text-white px-8 py-3 !rounded-button font-medium transition-colors whitespace-nowrap hover:bg-[#660000]" style="background-color: #800000;">Get Started</a>
+<a href="/login" class="bg-transparent border-2 border-white text-white px-8 py-3 !rounded-button font-medium hover:bg-white hover:text-gray-800 transition-colors whitespace-nowrap">Login</a>
+</div>
+</div>
+</div>
+</section>
+<!-- About Us Section -->
+<section id="about" class="py-20 bg-white">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="md:w-1/2">
+<h2 class="text-3xl font-bold mb-6">About Us</h2>
+<p class="text-gray-700 mb-6 leading-relaxed">Our Garage Management System revolutionizes how automotive service centers operate. We focus on improving service quality, enhancing customer satisfaction, and optimizing workflows for garage owners and mechanics alike.</p>
+<p class="text-gray-700 mb-6 leading-relaxed">With our comprehensive digital solution, we're transforming traditional garage operations into streamlined, efficient processes that save time, reduce errors, and ultimately deliver a superior experience for both businesses and their customers.</p>
+<a href="#" class="font-medium flex items-center group text-[#800000]">
+    Learn more about our mission
+    <span class="ml-2 group-hover:translate-x-2 transition-transform">
+      <i class="ri-arrow-right-line"></i>
+    </span>
+  </a>
+  
+</div>
+<div class="md:w-1/2">
+<img src="https://readdy.ai/api/search-image?query=professional%20mechanics%20team%20working%20in%20a%20modern%20garage%2C%20diverse%20group%20of%20technicians%20in%20uniform%2C%20collaborative%20environment%2C%20high-tech%20equipment%2C%20clean%20workshop%20with%20vehicles%20being%20serviced%2C%20bright%20lighting%2C%20organized%20tools&width=600&height=400&seq=2&orientation=landscape" alt="Garage Team" class="rounded-lg shadow-lg w-full h-auto object-cover">
+</div>
+</div>
+</div>
+</section>
+<!-- Key Features Section -->
+<section id="services" class="py-20 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Our Services</h2>
+<p class="text-gray-700 max-w-2xl mx-auto">Comprehensive solutions designed to modernize and streamline every aspect of your garage operations.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Feature 1 -->
+<div class="bg-white p-8 rounded shadow-md transition-all duration-300 feature-card">
+<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-6">
+<i class="ri-calendar-check-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Online Appointment Booking</h3>
+<p class="text-gray-600">Allow customers to schedule service appointments online, reducing phone calls and streamlining your calendar management.</p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-white p-8 rounded shadow-md transition-all duration-300 feature-card">
+<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-6">
+<i class="ri-user-settings-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Mechanic Assignment</h3>
+<p class="text-gray-600">Efficiently assign the right mechanic to each job based on expertise, workload, and availability.</p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-white p-8 rounded shadow-md transition-all duration-300 feature-card">
+<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-6">
+<i class="ri-history-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Service History Tracking</h3>
+<p class="text-gray-600">Maintain detailed service records for each vehicle, providing valuable insights for future maintenance needs.</p>
+</div>
+<!-- Feature 4 -->
+<div class="bg-white p-8 rounded shadow-md transition-all duration-300 feature-card">
+<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-6">
+<i class="ri-store-2-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Parts Inventory Management</h3>
+<p class="text-gray-600">Track parts inventory in real-time, set automatic reorder points, and reduce costly stockouts.</p>
+</div>
+<!-- Feature 5 -->
+<div class="bg-white p-8 rounded shadow-md transition-all duration-300 feature-card">
+<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-6">
+<i class="ri-secure-payment-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Secure Payment Tracking</h3>
+<p class="text-gray-600">Process payments securely and maintain comprehensive financial records for all transactions.</p>
+</div>
+<!-- Feature 6 -->
+<div class="bg-white p-8 rounded shadow-md transition-all duration-300 feature-card">
+<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-6">
+<i class="ri-customer-service-2-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Customer Communication</h3>
+<p class="text-gray-600">Keep customers informed with automated updates about their vehicle's service status.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works Section -->
+<section class="py-20 bg-white">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">How It Works</h2>
+<p class="text-gray-700 max-w-2xl mx-auto">Getting started with our garage management system is simple and straightforward.</p>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-8 max-w-4xl mx-auto">
+<!-- Step 1 -->
+<div class="text-center md:w-1/3">
+<div class="w-20 h-20 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-6 relative">
+<span class="text-primary font-bold text-2xl">1</span>
+</div>
+<h3 class="text-xl font-semibold mb-3">Register</h3>
+<p class="text-gray-600">Create your account in minutes and set up your garage profile.</p>
+</div>
+<!-- Step 2 -->
+<div class="hidden md:block w-24 h-0.5 bg-gray-200"></div>
+<div class="text-center md:w-1/3">
+<div class="w-20 h-20 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-6">
+<span class="text-primary font-bold text-2xl">2</span>
+</div>
+<h3 class="text-xl font-semibold mb-3">Book Service</h3>
+<p class="text-gray-600">Schedule appointments and assign mechanics to specific tasks.</p>
+</div>
+<!-- Step 3 -->
+<div class="hidden md:block w-24 h-0.5 bg-gray-200"></div>
+<div class="text-center md:w-1/3">
+<div class="w-20 h-20 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-6">
+<span class="text-primary font-bold text-2xl">3</span>
+</div>
+<h3 class="text-xl font-semibold mb-3">Track Repairs</h3>
+<p class="text-gray-600">Monitor service progress and keep customers updated in real-time.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials Section -->
+<section class="py-20 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">What Our Clients Say</h2>
+<p class="text-gray-700 max-w-2xl mx-auto">Hear from garage owners who have transformed their business with our system.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Testimonial 1 -->
+<div class="bg-white p-8 rounded shadow-sm testimonial-card">
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20middle-aged%20caucasian%20man%20with%20short%20brown%20hair%20wearing%20a%20business%20casual%20outfit%2C%20neutral%20background%2C%20friendly%20smile%2C%20high%20quality%20portrait&width=80&height=80&seq=3&orientation=squarish" alt="Client" class="w-14 h-14 rounded-full object-cover">
+<div class="ml-4">
+<h4 class="font-semibold">Michael Anderson</h4>
+<p class="text-sm text-gray-600">Anderson Auto Repair</p>
+</div>
+</div>
+<div class="flex text-yellow-400 mb-3">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<p class="text-gray-700">"This system has completely transformed how we manage our garage. Appointment scheduling is seamless, and our customers love the transparency of being able to track their repairs online."</p>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-white p-8 rounded shadow-sm testimonial-card">
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20middle-aged%20asian%20woman%20with%20black%20hair%20wearing%20a%20business%20outfit%2C%20neutral%20background%2C%20confident%20expression%2C%20high%20quality%20portrait&width=80&height=80&seq=4&orientation=squarish" alt="Client" class="w-14 h-14 rounded-full object-cover">
+<div class="ml-4">
+<h4 class="font-semibold">Jennifer Chen</h4>
+<p class="text-sm text-gray-600">Premier Auto Service</p>
+</div>
+</div>
+<div class="flex text-yellow-400 mb-3">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-half-fill"></i>
+</div>
+<p class="text-gray-700">"The inventory management feature alone has saved us thousands of dollars by preventing overstocking and stockouts. The ROI on this system was evident within the first month."</p>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-white p-8 rounded shadow-sm testimonial-card">
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20an%20african%20american%20man%20in%20his%2040s%20wearing%20a%20business%20casual%20outfit%2C%20neutral%20background%2C%20friendly%20smile%2C%20high%20quality%20portrait&width=80&height=80&seq=5&orientation=squarish" alt="Client" class="w-14 h-14 rounded-full object-cover">
+<div class="ml-4">
+<h4 class="font-semibold">Robert Johnson</h4>
+<p class="text-sm text-gray-600">Johnson's Auto Care</p>
+</div>
+</div>
+<div class="flex text-yellow-400 mb-3">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<p class="text-gray-700">"We've increased our daily capacity by 30% since implementing this system. The mechanic assignment feature ensures we're utilizing our team's skills efficiently, and customers appreciate the faster turnaround times."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-white">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+<p class="text-gray-700 max-w-2xl mx-auto">Have questions about our garage management system? We're here to help.</p>
+</div>
+<div class="flex flex-col md:flex-row gap-12">
+<!-- Contact Form -->
+<div class="md:w-1/2">
+<form class="space-y-6">
+<div class="relative">
+<input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary bg-white" required>
+<label for="name" class="absolute left-4 top-3 text-gray-500 transition-all duration-200 pointer-events-none">Your Name</label>
+</div>
+<div class="relative">
+<input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary bg-white" required>
+<label for="email" class="absolute left-4 top-3 text-gray-500 transition-all duration-200 pointer-events-none">Your Email</label>
+</div>
+<div class="relative">
+<textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary bg-white" required></textarea>
+<label for="message" class="absolute left-4 top-3 text-gray-500 transition-all duration-200 pointer-events-none">Your Message</label>
+</div>
+<div class="flex items-center">
+<label class="custom-checkbox flex items-center">
+<input type="checkbox" class="hidden">
+<span class="checkmark"></span>
+<span class="ml-7 text-gray-700">I agree to the terms and privacy policy</span>
+</label>
+</div>
+<button type="submit" class="bg-primary text-white px-8 py-3 !rounded-button font-medium hover:bg-red-600 transition-colors whitespace-nowrap">Send Message</button>
+</form>
+</div>
+<!-- Contact Info -->
+<div class="md:w-1/2">
+<div class="bg-gray-50 p-8 rounded h-full">
+<h3 class="text-xl font-semibold mb-6">Get in Touch</h3>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center mr-4 mt-1">
+<i class="ri-mail-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Email Us</h4>
+<p class="text-gray-600">info@garagemanagement.com</p>
+<p class="text-gray-600">support@garagemanagement.com</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center mr-4 mt-1">
+<i class="ri-phone-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Call Us</h4>
+<p class="text-gray-600">+1 (555) 123-4567</p>
+<p class="text-gray-600">+1 (555) 987-6543</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center mr-4 mt-1">
+<i class="ri-time-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Business Hours</h4>
+<p class="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
+<p class="text-gray-600">Saturday: 10:00 AM - 4:00 PM</p>
+<p class="text-gray-600">Sunday: Closed</p>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h4 class="font-medium mb-4">Follow Us</h4>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+<i class="ri-twitter-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+<i class="ri-instagram-line"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+<!-- Company Info -->
+<div>
+<a href="#" class="text-2xl font-['Pacifico'] text-white mb-6 inline-block">Liya Motors</a>
+<p class="text-gray-400 mb-6">Streamlining garage operations with innovative management solutions since 2020.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-facebook-fill ri-lg"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-twitter-fill ri-lg"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-linkedin-fill ri-lg"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-instagram-line ri-lg"></i>
+</a>
+</div>
+</div>
+<!-- Quick Links -->
+<div>
+<h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+<li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+<li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+</ul>
+</div>
+<!-- Newsletter -->
+<div>
+<h3 class="text-lg font-semibold mb-6">Subscribe to Our Newsletter</h3>
+<p class="text-gray-400 mb-4">Stay updated with the latest features and releases.</p>
+<form class="flex mb-4">
+<input type="email" placeholder="Your email address" class="bg-gray-800 text-white px-4 py-2 rounded-l border-none focus:outline-none w-full">
+<button type="submit" class="bg-primary text-white px-4 py-2 rounded-r hover:bg-red-700 transition-colors whitespace-nowrap">Subscribe</button>
+</form>
+<p class="text-gray-500 text-sm">We respect your privacy. Unsubscribe at any time.</p>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8 text-center">
+<p class="text-gray-500">© 2025 Garage Management System. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Form label animation
+const formInputs = document.querySelectorAll('input, textarea');
+formInputs.forEach(input => {
+input.addEventListener('focus', function() {
+const label = this.nextElementSibling;
+if (label && label.tagName === 'LABEL') {
+label.style.transform = 'translateY(-24px) scale(0.85)';
+label.style.color = '#F90808';
+}
+});
+input.addEventListener('blur', function() {
+const label = this.nextElementSibling;
+if (label && label.tagName === 'LABEL' && !this.value) {
+label.style.transform = '';
+label.style.color = '';
+}
+});
+// Check if input already has value on page load
+if (input.value) {
+const label = input.nextElementSibling;
+if (label && label.tagName === 'LABEL') {
+label.style.transform = 'translateY(-24px) scale(0.85)';
+}
+}
+});
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+if (targetId === '#') return;
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80, // Adjust for header height
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liya Motors | Home </title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#F90808',secondary:''},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+scroll-behavior: smooth;
+}
+input:focus, textarea:focus {
+outline: none;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.hero-section {
+background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('https://readdy.ai/api/search-image?query=modern%20car%20garage%20workshop%20with%20mechanics%20working%20on%20luxury%20cars%2C%20professional%20environment%2C%20clean%20and%20organized%20space%2C%20high-end%20tools%20and%20equipment%2C%20bright%20lighting%2C%20spacious%20interior%2C%20premium%20automotive%20service%20center&width=1920&height=1080&seq=1&orientation=landscape');
+background-size: cover;
+background-position: center;
+}
+.feature-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.testimonial-card {
+transition: all 0.3s ease;
+}
+.testimonial-card:hover {
+transform: translateY(-5px);
+}
+.custom-checkbox {
+position: relative;
+cursor: pointer;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+}
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #2d2d2d;
+border-radius: 4px;
+border: 1px solid #444;
+}
+.custom-checkbox:hover input ~ .checkmark {
+background-color: #333;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #800000;
+border: none;
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+}
+.custom-checkbox .checkmark:after {
+left: 7px;
+top: 3px;
+width: 6px;
+height: 12px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+</style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+<!-- Header/Navigation -->
+<header class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+<div class="container mx-auto px-6 py-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<a href="#" class="text-2xl font-['Pacifico'] text-gray-800">Liya Motors</a>
+</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a href="/" class="text-gray-700 hover:text-primary font-medium transition-colors">Home</a>
+<a href="" class="text-gray-700 hover:text-primary font-medium transition-colors">About Us</a>
+<a href="" class="text-gray-700 hover:text-primary font-medium transition-colors">Services</a>
+<a href="" class="text-gray-700 hover:text-primary font-medium transition-colors">Contact Us</a>
+<a href="/login" class="text-gray-700 hover:text-primary font-medium transition-colors">Login</a>
+<a href="/Register" class="text-white px-6 py-2 !rounded-button font-medium transition-colors whitespace-nowrap" style="background-color: #800000;">Register</a>
+
+</nav>
+<div class="md:hidden flex items-center">
+<button class="text-gray-700 hover:text-primary w-10 h-10 flex items-center justify-center">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="hero-section min-h-screen flex items-center pt-20">
+<div class="container mx-auto px-6 py-20 w-full">
+<div class="max-w-2xl">
+<h1 class="text-5xl font-bold text-white leading-tight mb-6">Streamline Your Garage Services</h1>
+<p class="text-xl text-gray-200 mb-8">Book appointments, track repairs, and manage vehicles — all online.</p>
+<div class="flex flex-wrap gap-4">
+    <a href="/Register" class="text-white px-8 py-3 !rounded-button font-medium transition-colors whitespace-nowrap hover:bg-[#660000]" style="background-color: #800000;">Get Started</a>
+<a href="/login" class="bg-transparent border-2 border-white text-white px-8 py-3 !rounded-button font-medium hover:bg-white hover:text-gray-800 transition-colors whitespace-nowrap">Login</a>
+</div>
+</div>
+</div>
+</section>
+<!-- About Us Section -->
+<section id="about" class="py-20 bg-white">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="md:w-1/2">
+<h2 class="text-3xl font-bold mb-6">About Us</h2>
+<p class="text-gray-700 mb-6 leading-relaxed">Our Garage Management System revolutionizes how automotive service centers operate. We focus on improving service quality, enhancing customer satisfaction, and optimizing workflows for garage owners and mechanics alike.</p>
+<p class="text-gray-700 mb-6 leading-relaxed">With our comprehensive digital solution, we're transforming traditional garage operations into streamlined, efficient processes that save time, reduce errors, and ultimately deliver a superior experience for both businesses and their customers.</p>
+<a href="#" class="font-medium flex items-center group text-[#800000]">
+    Learn more about our mission
+    <span class="ml-2 group-hover:translate-x-2 transition-transform">
+      <i class="ri-arrow-right-line"></i>
+    </span>
+  </a>
+  
+</div>
+<div class="md:w-1/2">
+<img src="https://readdy.ai/api/search-image?query=professional%20mechanics%20team%20working%20in%20a%20modern%20garage%2C%20diverse%20group%20of%20technicians%20in%20uniform%2C%20collaborative%20environment%2C%20high-tech%20equipment%2C%20clean%20workshop%20with%20vehicles%20being%20serviced%2C%20bright%20lighting%2C%20organized%20tools&width=600&height=400&seq=2&orientation=landscape" alt="Garage Team" class="rounded-lg shadow-lg w-full h-auto object-cover">
+</div>
+</div>
+</div>
+</section>
+<!-- Key Features Section -->
+<section id="services" class="py-20 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Our Services</h2>
+<p class="text-gray-700 max-w-2xl mx-auto">Comprehensive solutions designed to modernize and streamline every aspect of your garage operations.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Feature 1 -->
+<div class="bg-white p-8 rounded shadow-md transition-all duration-300 feature-card">
+<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-6">
+<i class="ri-calendar-check-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Online Appointment Booking</h3>
+<p class="text-gray-600">Allow customers to schedule service appointments online, reducing phone calls and streamlining your calendar management.</p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-white p-8 rounded shadow-md transition-all duration-300 feature-card">
+<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-6">
+<i class="ri-user-settings-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Mechanic Assignment</h3>
+<p class="text-gray-600">Efficiently assign the right mechanic to each job based on expertise, workload, and availability.</p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-white p-8 rounded shadow-md transition-all duration-300 feature-card">
+<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-6">
+<i class="ri-history-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Service History Tracking</h3>
+<p class="text-gray-600">Maintain detailed service records for each vehicle, providing valuable insights for future maintenance needs.</p>
+</div>
+<!-- Feature 4 -->
+<div class="bg-white p-8 rounded shadow-md transition-all duration-300 feature-card">
+<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-6">
+<i class="ri-store-2-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Parts Inventory Management</h3>
+<p class="text-gray-600">Track parts inventory in real-time, set automatic reorder points, and reduce costly stockouts.</p>
+</div>
+<!-- Feature 5 -->
+<div class="bg-white p-8 rounded shadow-md transition-all duration-300 feature-card">
+<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-6">
+<i class="ri-secure-payment-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Secure Payment Tracking</h3>
+<p class="text-gray-600">Process payments securely and maintain comprehensive financial records for all transactions.</p>
+</div>
+<!-- Feature 6 -->
+<div class="bg-white p-8 rounded shadow-md transition-all duration-300 feature-card">
+<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-6">
+<i class="ri-customer-service-2-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Customer Communication</h3>
+<p class="text-gray-600">Keep customers informed with automated updates about their vehicle's service status.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works Section -->
+<section class="py-20 bg-white">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">How It Works</h2>
+<p class="text-gray-700 max-w-2xl mx-auto">Getting started with our garage management system is simple and straightforward.</p>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-8 max-w-4xl mx-auto">
+<!-- Step 1 -->
+<div class="text-center md:w-1/3">
+<div class="w-20 h-20 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-6 relative">
+<span class="text-primary font-bold text-2xl">1</span>
+</div>
+<h3 class="text-xl font-semibold mb-3">Register</h3>
+<p class="text-gray-600">Create your account in minutes and set up your garage profile.</p>
+</div>
+<!-- Step 2 -->
+<div class="hidden md:block w-24 h-0.5 bg-gray-200"></div>
+<div class="text-center md:w-1/3">
+<div class="w-20 h-20 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-6">
+<span class="text-primary font-bold text-2xl">2</span>
+</div>
+<h3 class="text-xl font-semibold mb-3">Book Service</h3>
+<p class="text-gray-600">Schedule appointments and assign mechanics to specific tasks.</p>
+</div>
+<!-- Step 3 -->
+<div class="hidden md:block w-24 h-0.5 bg-gray-200"></div>
+<div class="text-center md:w-1/3">
+<div class="w-20 h-20 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-6">
+<span class="text-primary font-bold text-2xl">3</span>
+</div>
+<h3 class="text-xl font-semibold mb-3">Track Repairs</h3>
+<p class="text-gray-600">Monitor service progress and keep customers updated in real-time.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials Section -->
+<section class="py-20 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">What Our Clients Say</h2>
+<p class="text-gray-700 max-w-2xl mx-auto">Hear from garage owners who have transformed their business with our system.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Testimonial 1 -->
+<div class="bg-white p-8 rounded shadow-sm testimonial-card">
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20middle-aged%20caucasian%20man%20with%20short%20brown%20hair%20wearing%20a%20business%20casual%20outfit%2C%20neutral%20background%2C%20friendly%20smile%2C%20high%20quality%20portrait&width=80&height=80&seq=3&orientation=squarish" alt="Client" class="w-14 h-14 rounded-full object-cover">
+<div class="ml-4">
+<h4 class="font-semibold">Michael Anderson</h4>
+<p class="text-sm text-gray-600">Anderson Auto Repair</p>
+</div>
+</div>
+<div class="flex text-yellow-400 mb-3">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<p class="text-gray-700">"This system has completely transformed how we manage our garage. Appointment scheduling is seamless, and our customers love the transparency of being able to track their repairs online."</p>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-white p-8 rounded shadow-sm testimonial-card">
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20middle-aged%20asian%20woman%20with%20black%20hair%20wearing%20a%20business%20outfit%2C%20neutral%20background%2C%20confident%20expression%2C%20high%20quality%20portrait&width=80&height=80&seq=4&orientation=squarish" alt="Client" class="w-14 h-14 rounded-full object-cover">
+<div class="ml-4">
+<h4 class="font-semibold">Jennifer Chen</h4>
+<p class="text-sm text-gray-600">Premier Auto Service</p>
+</div>
+</div>
+<div class="flex text-yellow-400 mb-3">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-half-fill"></i>
+</div>
+<p class="text-gray-700">"The inventory management feature alone has saved us thousands of dollars by preventing overstocking and stockouts. The ROI on this system was evident within the first month."</p>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-white p-8 rounded shadow-sm testimonial-card">
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20an%20african%20american%20man%20in%20his%2040s%20wearing%20a%20business%20casual%20outfit%2C%20neutral%20background%2C%20friendly%20smile%2C%20high%20quality%20portrait&width=80&height=80&seq=5&orientation=squarish" alt="Client" class="w-14 h-14 rounded-full object-cover">
+<div class="ml-4">
+<h4 class="font-semibold">Robert Johnson</h4>
+<p class="text-sm text-gray-600">Johnson's Auto Care</p>
+</div>
+</div>
+<div class="flex text-yellow-400 mb-3">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<p class="text-gray-700">"We've increased our daily capacity by 30% since implementing this system. The mechanic assignment feature ensures we're utilizing our team's skills efficiently, and customers appreciate the faster turnaround times."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-white">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+<p class="text-gray-700 max-w-2xl mx-auto">Have questions about our garage management system? We're here to help.</p>
+</div>
+<div class="flex flex-col md:flex-row gap-12">
+<!-- Contact Form -->
+<div class="md:w-1/2">
+<form class="space-y-6">
+<div class="relative">
+<input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary bg-white" required>
+<label for="name" class="absolute left-4 top-3 text-gray-500 transition-all duration-200 pointer-events-none">Your Name</label>
+</div>
+<div class="relative">
+<input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary bg-white" required>
+<label for="email" class="absolute left-4 top-3 text-gray-500 transition-all duration-200 pointer-events-none">Your Email</label>
+</div>
+<div class="relative">
+<textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary bg-white" required></textarea>
+<label for="message" class="absolute left-4 top-3 text-gray-500 transition-all duration-200 pointer-events-none">Your Message</label>
+</div>
+<div class="flex items-center">
+<label class="custom-checkbox flex items-center">
+<input type="checkbox" class="hidden">
+<span class="checkmark"></span>
+<span class="ml-7 text-gray-700">I agree to the terms and privacy policy</span>
+</label>
+</div>
+<button type="submit" class="bg-primary text-white px-8 py-3 !rounded-button font-medium hover:bg-red-600 transition-colors whitespace-nowrap">Send Message</button>
+</form>
+</div>
+<!-- Contact Info -->
+<div class="md:w-1/2">
+<div class="bg-gray-50 p-8 rounded h-full">
+<h3 class="text-xl font-semibold mb-6">Get in Touch</h3>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center mr-4 mt-1">
+<i class="ri-mail-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Email Us</h4>
+<p class="text-gray-600">info@garagemanagement.com</p>
+<p class="text-gray-600">support@garagemanagement.com</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center mr-4 mt-1">
+<i class="ri-phone-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Call Us</h4>
+<p class="text-gray-600">+1 (555) 123-4567</p>
+<p class="text-gray-600">+1 (555) 987-6543</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center mr-4 mt-1">
+<i class="ri-time-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Business Hours</h4>
+<p class="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
+<p class="text-gray-600">Saturday: 10:00 AM - 4:00 PM</p>
+<p class="text-gray-600">Sunday: Closed</p>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h4 class="font-medium mb-4">Follow Us</h4>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+<i class="ri-twitter-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+<i class="ri-instagram-line"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+<!-- Company Info -->
+<div>
+<a href="#" class="text-2xl font-['Pacifico'] text-white mb-6 inline-block">Liya Motors</a>
+<p class="text-gray-400 mb-6">Streamlining garage operations with innovative management solutions since 2020.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-facebook-fill ri-lg"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-twitter-fill ri-lg"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-linkedin-fill ri-lg"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-instagram-line ri-lg"></i>
+</a>
+</div>
+</div>
+<!-- Quick Links -->
+<div>
+<h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+<li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+<li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+</ul>
+</div>
+<!-- Newsletter -->
+<div>
+<h3 class="text-lg font-semibold mb-6">Subscribe to Our Newsletter</h3>
+<p class="text-gray-400 mb-4">Stay updated with the latest features and releases.</p>
+<form class="flex mb-4">
+<input type="email" placeholder="Your email address" class="bg-gray-800 text-white px-4 py-2 rounded-l border-none focus:outline-none w-full">
+<button type="submit" class="bg-primary text-white px-4 py-2 rounded-r hover:bg-red-700 transition-colors whitespace-nowrap">Subscribe</button>
+</form>
+<p class="text-gray-500 text-sm">We respect your privacy. Unsubscribe at any time.</p>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8 text-center">
+<p class="text-gray-500">© 2025 Garage Management System. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Form label animation
+const formInputs = document.querySelectorAll('input, textarea');
+formInputs.forEach(input => {
+input.addEventListener('focus', function() {
+const label = this.nextElementSibling;
+if (label && label.tagName === 'LABEL') {
+label.style.transform = 'translateY(-24px) scale(0.85)';
+label.style.color = '#F90808';
+}
+});
+input.addEventListener('blur', function() {
+const label = this.nextElementSibling;
+if (label && label.tagName === 'LABEL' && !this.value) {
+label.style.transform = '';
+label.style.color = '';
+}
+});
+// Check if input already has value on page load
+if (input.value) {
+const label = input.nextElementSibling;
+if (label && label.tagName === 'LABEL') {
+label.style.transform = 'translateY(-24px) scale(0.85)';
+}
+}
+});
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+if (targetId === '#') return;
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80, // Adjust for header height
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+</body>
+</html>
+>>>>>>> 2aa45ee (Initial commit)

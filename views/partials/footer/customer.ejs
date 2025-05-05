@@ -1,0 +1,552 @@
+<<<<<<< HEAD
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sidebar toggle
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        
+        if (sidebarToggle && sidebar) {
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+            });
+        }
+    });
+</script>
+<script>
+    //current date and time display
+    function updateDateTime() {
+const now = new Date().toLocaleString();
+document.getElementById('datetime').textContent = `${now}`;
+}
+
+updateDateTime(); // Show immediately
+setInterval(updateDateTime, 1000); // Update every 1 second
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Step navigation
+        const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
+        let currentStep = 0;
+        
+        const nextStepBtn = document.getElementById('next-step');
+        const prevStepBtn = document.getElementById('prev-step');
+        const submitBookingBtn = document.getElementById('submit-booking');
+        
+        // Initialize step display
+        updateStepDisplay();
+        
+        // Next button click
+        nextStepBtn.addEventListener('click', function() {
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                updateStepDisplay();
+            }
+        });
+        
+        // Previous button click
+        prevStepBtn.addEventListener('click', function() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateStepDisplay();
+            }
+        });
+        
+        // Submit booking button click
+        submitBookingBtn.addEventListener('click', function() {
+            // Show success message or redirect
+            alert('Booking confirmed! You will receive a confirmation email shortly.');
+            // Redirect to dashboard or confirmation page
+            window.location.href = 'https://readdy.ai/home/af6b7dae-c8e5-48be-bd2d-5302a03eacd6/49204c0b-fc3f-47f4-8e90-8b7fa1cfac3c';
+        });
+        
+        // Update step display based on current step
+        function updateStepDisplay() {
+            // Hide all steps
+            steps.forEach(step => {
+                document.getElementById(step).classList.add('hidden');
+            });
+            
+            // Show current step
+            document.getElementById(steps[currentStep]).classList.remove('hidden');
+            
+            // Update progress indicators
+            const progressSteps = document.querySelectorAll('.progress-step');
+            progressSteps.forEach((step, index) => {
+                const stepNumber = step.querySelector('.progress-step-number');
+                
+                if (index <= currentStep) {
+                    step.classList.add('active');
+                    stepNumber.classList.remove('bg-gray-200', 'text-gray-600');
+                    stepNumber.classList.add('bg-primary', 'text-white');
+                } else {
+                    step.classList.remove('active');
+                    stepNumber.classList.remove('bg-primary', 'text-white');
+                    stepNumber.classList.add('bg-gray-200', 'text-gray-600');
+                }
+            });
+            
+            // Show/hide navigation buttons
+            if (currentStep === 0) {
+                prevStepBtn.classList.add('hidden');
+            } else {
+                prevStepBtn.classList.remove('hidden');
+            }
+            
+            if (currentStep === steps.length - 1) {
+                nextStepBtn.classList.add('hidden');
+                submitBookingBtn.classList.remove('hidden');
+            } else {
+                nextStepBtn.classList.remove('hidden');
+                submitBookingBtn.classList.add('hidden');
+            }
+        }
+        
+        // Service tab switching
+        const serviceTabs = document.querySelectorAll('.service-tab');
+        serviceTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                serviceTabs.forEach(t => {
+                    t.classList.remove('text-primary', 'border-primary');
+                    t.classList.add('text-gray-500', 'hover:text-gray-700');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.remove('text-gray-500', 'hover:text-gray-700');
+                this.classList.add('text-primary', 'border-primary', 'border-b-2');
+                
+                // Hide all tab content
+                document.querySelectorAll('.service-tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Show selected tab content
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-content`).classList.remove('hidden');
+            });
+        });
+        
+        // Service selection
+        const serviceCheckboxes = document.querySelectorAll('input[name="service"]');
+        serviceCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateSelectedServices);
+        });
+        
+        function updateSelectedServices() {
+            const selectedServices = document.querySelectorAll('input[name="service"]:checked');
+            const selectedServicesList = document.getElementById('selected-services-list');
+            const totalDurationEl = document.getElementById('total-duration');
+            const totalCostEl = document.getElementById('total-cost');
+            
+            if (selectedServices.length === 0) {
+                selectedServicesList.innerHTML = '<p class="text-sm text-gray-500">No services selected</p>';
+                totalDurationEl.textContent = '0 min';
+                totalCostEl.textContent = '$0.00';
+                return;
+            }
+            
+            let totalDuration = 0;
+            let totalCost = 0;
+            let servicesHTML = '';
+            
+            selectedServices.forEach(service => {
+                const name = service.getAttribute('data-name');
+                const duration = parseInt(service.getAttribute('data-duration'));
+                const price = parseFloat(service.getAttribute('data-price'));
+                
+                totalDuration += duration;
+                totalCost += price;
+                
+                servicesHTML += `
+                    <div class="flex justify-between">
+                        <span class="text-sm">${name}</span>
+                        <span class="text-sm font-medium">$${price.toFixed(2)}</span>
+                    </div>
+                `;
+            });
+            
+            selectedServicesList.innerHTML = servicesHTML;
+            
+            // Format duration
+            let durationText = '';
+            if (totalDuration >= 60) {
+                const hours = Math.floor(totalDuration / 60);
+                const minutes = totalDuration % 60;
+                durationText = `${hours} ${hours === 1 ? 'hour' : 'hours'}`;
+                if (minutes > 0) {
+                    durationText += ` ${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`;
+                }
+            } else {
+                durationText = `${totalDuration} ${totalDuration === 1 ? 'minute' : 'minutes'}`;
+            }
+            
+            totalDurationEl.textContent = durationText;
+            totalCostEl.textContent = `$${totalCost.toFixed(2)}`;
+            
+            // Update summary duration in step 3
+            if (document.getElementById('summary-duration')) {
+                document.getElementById('summary-duration').textContent = durationText;
+            }
+        }
+        
+        // Date picker functionality
+        const datePickerDays = document.querySelectorAll('.date-picker-day:not(.disabled)');
+        datePickerDays.forEach(day => {
+            day.addEventListener('click', function() {
+                // Remove selected class from all days
+                datePickerDays.forEach(d => d.classList.remove('selected'));
+                
+                // Add selected class to clicked day
+                this.classList.add('selected');
+            });
+        });
+        
+        // Time slot selection
+        const timeSlots = document.querySelectorAll('.time-slot:not(.disabled)');
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', function() {
+                // Remove selected class from all time slots
+                timeSlots.forEach(s => s.classList.remove('selected'));
+                
+                // Add selected class to clicked time slot
+                this.classList.add('selected');
+            });
+        });
+        
+        // Vehicle selection
+        const vehicleCards = document.querySelectorAll('.vehicle-card');
+        vehicleCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const radioBtn = this.querySelector('input[type="radio"]');
+                radioBtn.checked = true;
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const dashboardSection = document.getElementById('dashboard-section');
+      const appointmentSection = document.getElementById('book-appointment-section');
+      
+
+  
+      const bookAppointmentBtn = document.querySelector('a:has(i.ri-calendar-check-line)');
+      const dashboardBtn = document.querySelector('a:has(i.ri-dashboard-line)');
+      const myAppointmentBtn = document.querySelector('a:has(i.ri-dashboard-line)');
+      const sidebarLinks = document.querySelectorAll('.sidebar-link');
+  
+      // Function to toggle active class and handle hover states
+      function setActive(link, otherLink) {
+        // Remove active class and add hover for the other link
+        otherLink.classList.remove('active');
+        otherLink.classList.add('hover:bg-gray-100'); // Add hover effect for the non-active link
+  
+        // Remove hover class from the active link
+        link.classList.remove('hover:bg-gray-100');
+  
+        // Add active class to the clicked link
+        link.classList.add('active');
+      }
+  
+      // Book Appointment Button Clicked
+      bookAppointmentBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Switch sections
+        dashboardSection.classList.add('hidden');
+        appointmentSection.classList.remove('hidden');
+  
+        // Set Active Class
+        setActive(bookAppointmentBtn, dashboardBtn);
+      });
+      
+      // Dashboard Button Clicked
+      dashboardBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+  
+        // Switch sections
+        appointmentSection.classList.add('hidden');
+        dashboardSection.classList.remove('hidden');
+  
+        // Set Active Class
+        setActive(dashboardBtn, bookAppointmentBtn);
+      });
+    });
+  </script>
+=======
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sidebar toggle
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        
+        if (sidebarToggle && sidebar) {
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+            });
+        }
+    });
+</script>
+<script>
+    //current date and time display
+    function updateDateTime() {
+const now = new Date().toLocaleString();
+document.getElementById('datetime').textContent = `${now}`;
+}
+
+updateDateTime(); // Show immediately
+setInterval(updateDateTime, 1000); // Update every 1 second
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Step navigation
+        const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
+        let currentStep = 0;
+        
+        const nextStepBtn = document.getElementById('next-step');
+        const prevStepBtn = document.getElementById('prev-step');
+        const submitBookingBtn = document.getElementById('submit-booking');
+        
+        // Initialize step display
+        updateStepDisplay();
+        
+        // Next button click
+        nextStepBtn.addEventListener('click', function() {
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                updateStepDisplay();
+            }
+        });
+        
+        // Previous button click
+        prevStepBtn.addEventListener('click', function() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateStepDisplay();
+            }
+        });
+        
+        // Submit booking button click
+        submitBookingBtn.addEventListener('click', function() {
+            // Show success message or redirect
+            alert('Booking confirmed! You will receive a confirmation email shortly.');
+            // Redirect to dashboard or confirmation page
+            window.location.href = 'https://readdy.ai/home/af6b7dae-c8e5-48be-bd2d-5302a03eacd6/49204c0b-fc3f-47f4-8e90-8b7fa1cfac3c';
+        });
+        
+        // Update step display based on current step
+        function updateStepDisplay() {
+            // Hide all steps
+            steps.forEach(step => {
+                document.getElementById(step).classList.add('hidden');
+            });
+            
+            // Show current step
+            document.getElementById(steps[currentStep]).classList.remove('hidden');
+            
+            // Update progress indicators
+            const progressSteps = document.querySelectorAll('.progress-step');
+            progressSteps.forEach((step, index) => {
+                const stepNumber = step.querySelector('.progress-step-number');
+                
+                if (index <= currentStep) {
+                    step.classList.add('active');
+                    stepNumber.classList.remove('bg-gray-200', 'text-gray-600');
+                    stepNumber.classList.add('bg-primary', 'text-white');
+                } else {
+                    step.classList.remove('active');
+                    stepNumber.classList.remove('bg-primary', 'text-white');
+                    stepNumber.classList.add('bg-gray-200', 'text-gray-600');
+                }
+            });
+            
+            // Show/hide navigation buttons
+            if (currentStep === 0) {
+                prevStepBtn.classList.add('hidden');
+            } else {
+                prevStepBtn.classList.remove('hidden');
+            }
+            
+            if (currentStep === steps.length - 1) {
+                nextStepBtn.classList.add('hidden');
+                submitBookingBtn.classList.remove('hidden');
+            } else {
+                nextStepBtn.classList.remove('hidden');
+                submitBookingBtn.classList.add('hidden');
+            }
+        }
+        
+        // Service tab switching
+        const serviceTabs = document.querySelectorAll('.service-tab');
+        serviceTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                serviceTabs.forEach(t => {
+                    t.classList.remove('text-primary', 'border-primary');
+                    t.classList.add('text-gray-500', 'hover:text-gray-700');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.remove('text-gray-500', 'hover:text-gray-700');
+                this.classList.add('text-primary', 'border-primary', 'border-b-2');
+                
+                // Hide all tab content
+                document.querySelectorAll('.service-tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Show selected tab content
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-content`).classList.remove('hidden');
+            });
+        });
+        
+        // Service selection
+        const serviceCheckboxes = document.querySelectorAll('input[name="service"]');
+        serviceCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateSelectedServices);
+        });
+        
+        function updateSelectedServices() {
+            const selectedServices = document.querySelectorAll('input[name="service"]:checked');
+            const selectedServicesList = document.getElementById('selected-services-list');
+            const totalDurationEl = document.getElementById('total-duration');
+            const totalCostEl = document.getElementById('total-cost');
+            
+            if (selectedServices.length === 0) {
+                selectedServicesList.innerHTML = '<p class="text-sm text-gray-500">No services selected</p>';
+                totalDurationEl.textContent = '0 min';
+                totalCostEl.textContent = '$0.00';
+                return;
+            }
+            
+            let totalDuration = 0;
+            let totalCost = 0;
+            let servicesHTML = '';
+            
+            selectedServices.forEach(service => {
+                const name = service.getAttribute('data-name');
+                const duration = parseInt(service.getAttribute('data-duration'));
+                const price = parseFloat(service.getAttribute('data-price'));
+                
+                totalDuration += duration;
+                totalCost += price;
+                
+                servicesHTML += `
+                    <div class="flex justify-between">
+                        <span class="text-sm">${name}</span>
+                        <span class="text-sm font-medium">$${price.toFixed(2)}</span>
+                    </div>
+                `;
+            });
+            
+            selectedServicesList.innerHTML = servicesHTML;
+            
+            // Format duration
+            let durationText = '';
+            if (totalDuration >= 60) {
+                const hours = Math.floor(totalDuration / 60);
+                const minutes = totalDuration % 60;
+                durationText = `${hours} ${hours === 1 ? 'hour' : 'hours'}`;
+                if (minutes > 0) {
+                    durationText += ` ${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`;
+                }
+            } else {
+                durationText = `${totalDuration} ${totalDuration === 1 ? 'minute' : 'minutes'}`;
+            }
+            
+            totalDurationEl.textContent = durationText;
+            totalCostEl.textContent = `$${totalCost.toFixed(2)}`;
+            
+            // Update summary duration in step 3
+            if (document.getElementById('summary-duration')) {
+                document.getElementById('summary-duration').textContent = durationText;
+            }
+        }
+        
+        // Date picker functionality
+        const datePickerDays = document.querySelectorAll('.date-picker-day:not(.disabled)');
+        datePickerDays.forEach(day => {
+            day.addEventListener('click', function() {
+                // Remove selected class from all days
+                datePickerDays.forEach(d => d.classList.remove('selected'));
+                
+                // Add selected class to clicked day
+                this.classList.add('selected');
+            });
+        });
+        
+        // Time slot selection
+        const timeSlots = document.querySelectorAll('.time-slot:not(.disabled)');
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', function() {
+                // Remove selected class from all time slots
+                timeSlots.forEach(s => s.classList.remove('selected'));
+                
+                // Add selected class to clicked time slot
+                this.classList.add('selected');
+            });
+        });
+        
+        // Vehicle selection
+        const vehicleCards = document.querySelectorAll('.vehicle-card');
+        vehicleCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const radioBtn = this.querySelector('input[type="radio"]');
+                radioBtn.checked = true;
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const dashboardSection = document.getElementById('dashboard-section');
+      const appointmentSection = document.getElementById('book-appointment-section');
+      
+
+  
+      const bookAppointmentBtn = document.querySelector('a:has(i.ri-calendar-check-line)');
+      const dashboardBtn = document.querySelector('a:has(i.ri-dashboard-line)');
+      const myAppointmentBtn = document.querySelector('a:has(i.ri-dashboard-line)');
+      const sidebarLinks = document.querySelectorAll('.sidebar-link');
+  
+      // Function to toggle active class and handle hover states
+      function setActive(link, otherLink) {
+        // Remove active class and add hover for the other link
+        otherLink.classList.remove('active');
+        otherLink.classList.add('hover:bg-gray-100'); // Add hover effect for the non-active link
+  
+        // Remove hover class from the active link
+        link.classList.remove('hover:bg-gray-100');
+  
+        // Add active class to the clicked link
+        link.classList.add('active');
+      }
+  
+      // Book Appointment Button Clicked
+      bookAppointmentBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Switch sections
+        dashboardSection.classList.add('hidden');
+        appointmentSection.classList.remove('hidden');
+  
+        // Set Active Class
+        setActive(bookAppointmentBtn, dashboardBtn);
+      });
+      
+      // Dashboard Button Clicked
+      dashboardBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+  
+        // Switch sections
+        appointmentSection.classList.add('hidden');
+        dashboardSection.classList.remove('hidden');
+  
+        // Set Active Class
+        setActive(dashboardBtn, bookAppointmentBtn);
+      });
+    });
+  </script>
+>>>>>>> 2aa45ee (Initial commit)
+  

@@ -1,0 +1,147 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Appointments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-[#800000] font-sans">
+
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <h2 class="text-4xl font-bold text-center mb-8">My Appointments</h2>
+
+    <% if (appointments.length === 0) { %>
+      <p class="text-center text-lg text-gray-500">No appointments assigned to you yet.</p>
+    <% } else { %>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-left border border-[#800000]/30 rounded-lg shadow">
+          <thead class="bg-[#800000] text-white">
+            <tr>
+              <th class="px-4 py-3">Customer</th>
+              <th class="px-4 py-3">Vehicle</th>
+              <th class="px-4 py-3">Date</th>
+              <th class="px-4 py-3">Time</th>
+              <th class="px-4 py-3">Service</th>
+              <th class="px-4 py-3">Status</th>
+              <th class="px-4 py-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% appointments.forEach(app => { %>
+              <tr class="border-t hover:bg-[#800000]/5 transition">
+                <td class="px-4 py-3"><%= app.customer?.fullName || 'N/A' %></td>
+                <td class="px-4 py-3"><%= app.vehicleNumber %></td>
+                <td class="px-4 py-3">
+                  <%= new Date(app.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %>
+                </td>
+                <td class="px-4 py-3"><%= app.time %></td>
+                <td class="px-4 py-3"><%= app.serviceType %></td>
+                <td class="px-4 py-3">
+                  <span class="inline-block px-2 py-1 text-sm font-medium rounded-full 
+                    <%= app.status === 'Completed' 
+                      ? 'bg-green-100 text-green-800' 
+                      : app.status === 'Approved' 
+                        ? 'bg-blue-100 text-blue-800' 
+                        : 'bg-yellow-100 text-yellow-800' %>">
+                    <%= app.status %>
+                  </span>
+                </td>
+                <td class="px-4 py-3">
+                  <% if (app.status !== 'Completed') { %>
+                    <form action="/appointments/mechanic/appointments/<%= app._id %>/complete" method="POST">
+                      <button type="submit"
+                        class="bg-[#800000] text-white px-3 py-1 rounded-md hover:bg-[#660000] transition">
+                        Mark Completed
+                      </button>
+                    </form>
+                  <% } else { %>
+                    <span class="text-gray-400 text-sm">—</span>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Appointments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-[#800000] font-sans">
+
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <h2 class="text-4xl font-bold text-center mb-8">My Appointments</h2>
+
+    <% if (appointments.length === 0) { %>
+      <p class="text-center text-lg text-gray-500">No appointments assigned to you yet.</p>
+    <% } else { %>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-left border border-[#800000]/30 rounded-lg shadow">
+          <thead class="bg-[#800000] text-white">
+            <tr>
+              <th class="px-4 py-3">Customer</th>
+              <th class="px-4 py-3">Vehicle</th>
+              <th class="px-4 py-3">Date</th>
+              <th class="px-4 py-3">Time</th>
+              <th class="px-4 py-3">Service</th>
+              <th class="px-4 py-3">Status</th>
+              <th class="px-4 py-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% appointments.forEach(app => { %>
+              <tr class="border-t hover:bg-[#800000]/5 transition">
+                <td class="px-4 py-3"><%= app.customer?.fullName || 'N/A' %></td>
+                <td class="px-4 py-3"><%= app.vehicleNumber %></td>
+                <td class="px-4 py-3">
+                  <%= new Date(app.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %>
+                </td>
+                <td class="px-4 py-3"><%= app.time %></td>
+                <td class="px-4 py-3"><%= app.serviceType %></td>
+                <td class="px-4 py-3">
+                  <span class="inline-block px-2 py-1 text-sm font-medium rounded-full 
+                    <%= app.status === 'Completed' 
+                      ? 'bg-green-100 text-green-800' 
+                      : app.status === 'Approved' 
+                        ? 'bg-blue-100 text-blue-800' 
+                        : 'bg-yellow-100 text-yellow-800' %>">
+                    <%= app.status %>
+                  </span>
+                </td>
+                <td class="px-4 py-3">
+                  <% if (app.status !== 'Completed') { %>
+                    <form action="/appointments/mechanic/appointments/<%= app._id %>/complete" method="POST">
+                      <button type="submit"
+                        class="bg-[#800000] text-white px-3 py-1 rounded-md hover:bg-[#660000] transition">
+                        Mark Completed
+                      </button>
+                    </form>
+                  <% } else { %>
+                    <span class="text-gray-400 text-sm">—</span>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+
+</body>
+</html>
+>>>>>>> 2aa45ee (Initial commit)
