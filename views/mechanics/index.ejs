@@ -1,0 +1,21 @@
+<h2>All Mechanics</h2>
+<a href="/mechanics/add">Add Mechanic</a>
+<table>
+  <thead>
+    <tr><th>Name</th><th>Email</th><th>Actions</th></tr>
+  </thead>
+  <tbody>
+    <% mechanics.forEach(mechanic => { %>
+      <tr>
+        <td><%= mechanic.fullName %></td>
+        <td><%= mechanic.email %></td>
+        <td>
+          <a href="/mechanics/edit/<%= mechanic._id %>">Edit</a>
+          <form method="POST" action="/mechanics/delete/<%= mechanic._id %>" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

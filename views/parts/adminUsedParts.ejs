@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Used Parts - Admin View</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6 text-center">All Used Parts by Mechanics</h1>
+
+    <div class="bg-white p-6 rounded shadow-md">
+      <% if (usedParts.length > 0) { %>
+        <table class="w-full table-auto border border-gray-300">
+          <thead>
+            <tr class="bg-gray-200">
+              <th class="border px-4 py-2">Image</th>
+              <th class="border px-4 py-2">Part Name</th>
+              <th class="border px-4 py-2">Mechanic</th>
+              <th class="border px-4 py-2">Customer</th>
+              <th class="border px-4 py-2">Quantity</th>
+              <th class="border px-4 py-2">Used At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% usedParts.forEach(used => { %>
+              <tr>
+                <td class="border px-4 py-2 text-center">
+                  <% if (used.part?.image) { %>
+                    <img src="/uploads/<%= used.part.image %>" width="60" class="mx-auto">
+                  <% } else { %>
+                    N/A
+                  <% } %>
+                </td>
+                <td class="border px-4 py-2"><%= used.part?.name || 'N/A' %></td>
+                <td class="border px-4 py-2"><%= used.mechanic?.fullName || 'N/A' %></td>
+                <td class="border px-4 py-2"><%= used.customer?.fullName || 'N/A' %></td>
+                <td class="border px-4 py-2"><%= used.quantity %></td>
+                <td class="border px-4 py-2"><%= new Date(used.usedAt).toLocaleString() %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <p class="text-center text-gray-600">No parts have been used yet.</p>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

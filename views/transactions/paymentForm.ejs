@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <div class="max-w-2xl mx-auto p-6 mt-10 bg-white rounded-xl shadow-md border border-[#800000]/30">
+    <h2 class="text-3xl font-bold text-[#800000] mb-6 text-center">Payment for <%= serviceType %></h2>
+
+    <% if (success_msg && success_msg.length > 0) { %>
+  <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4 text-center border border-green-300">
+    <%= success_msg %>
+  </div>
+<% } %>
+
+<% if (error_msg && error_msg.length > 0) { %>
+  <div class="bg-red-100 text-red-800 px-4 py-2 rounded mb-4 text-center border border-red-300">
+    <%= error_msg %>
+  </div>
+<% } %>
+
+
+    <div class="space-y-2 text-base">
+      <p><span class="font-semibold">Customer:</span> <%= customerName %></p>
+      <p><span class="font-semibold">Vehicle Number:</span> <%= vehicleNumber %></p>
+      <p><span class="font-semibold">Service Type:</span> <%= serviceType %></p>
+      <p><span class="font-semibold">Start Date:</span> <%= date %></p>
+      <p><span class="font-semibold">Start Time:</span> <%= startTime %></p>
+      <p><span class="font-semibold">End Date:</span> <%= endDate %></p>
+      <p><span class="font-semibold">End Time:</span> <%= endTime %></p>
+      <p><span class="font-semibold">Duration:</span> <%= durationText %></p>
+      <p><span class="font-semibold">Mechanic:</span> <%= mechanicName %></p>
+    </div>
+
+    <form action="/transactions/pay/<%= appointment._id %>" method="POST" class="mt-8 space-y-6">
+      <div>
+        <label class="block font-semibold mb-1 text-[#800000]">Amount (LKR)</label>
+        <input name="amount" type="number" required placeholder="Enter amount"
+          class="w-full border border-[#800000]/40 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#800000]" />
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1 text-[#800000]">Payment Method</label>
+        <select name="method" required
+          class="w-full border border-[#800000]/40 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#800000]">
+          <option value="Cash">Cash</option>
+          <option value="Card">Card</option>
+          <option value="Online">Online</option>
+        </select>
+      </div>
+
+      <div class="text-center">
+        <button type="submit"
+          class="bg-[#800000] hover:bg-[#660000] text-white font-medium px-6 py-2 rounded-md transition duration-200">
+          Pay Now
+        </button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

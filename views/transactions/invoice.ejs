@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Invoice</title>
+  <style>
+    .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-size: 6rem;
+      color: rgba(128, 0, 0, 0.05);
+      font-weight: 900;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      margin-top: 60px;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+    @media print {
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body style="background-color: #f9fafb; padding: 2.5rem; color: #111827; font-family: sans-serif; position: relative;">
+
+  <!-- Watermark -->
+  <div class="watermark">PAID</div>
+
+  <!-- Invoice Container -->
+  <div style="background-color: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 0.75rem; padding: 2rem; max-width: 48rem; margin: 0 auto; position: relative; z-index: 10; border: 1px solid #e5e7eb;">
+    
+    <!-- Header -->
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #d1d5db; padding-bottom: 1rem; margin-bottom: 1.5rem;">
+      <div>
+        <h1 style="font-size: 1.875rem; font-weight: bold; color: #800000;">VGMS</h1>
+        <p style="font-size: 0.875rem; color: #6b7280;">Vehicle Garage Management System</p>
+      </div>
+      <div style="text-align: right;">
+        <h1 style="font-size: 1.875rem; font-weight: bold;">Invoice</h1>
+        <p style="font-size: 0.875rem; color: #6b7280;"><%= new Date(transaction.paidAt).toLocaleDateString() %></p>
+      </div>
+    </div>
+
+    <!-- Customer Info -->
+    <div style="margin-bottom: 1.5rem;">
+      <h2 style="font-size: 1.125rem; font-weight: 600; color: #800000; margin-bottom: 0.5rem;">Customer Info</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; font-size: 0.875rem;">
+        <p><strong>Name:</strong> <%= transaction.customerName %></p>
+        <p><strong>Vehicle No:</strong> <%= transaction.vehicleNumber %></p>
+        <p><strong>Service Type:</strong> <%= transaction.serviceType %></p>
+        <p><strong>Mechanic:</strong> <%= transaction.mechanicName %></p>
+      </div>
+    </div>
+
+    <!-- Service Info -->
+    <div style="margin-bottom: 1.5rem;">
+      <h2 style="font-size: 1.125rem; font-weight: 600; color: #800000; margin-bottom: 0.5rem;">Service Details</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; font-size: 0.875rem;">
+        <p><strong>Start:</strong> <%= transaction.startDate.toDateString() %> at <%= transaction.startTime %></p>
+        <p><strong>End:</strong> <%= transaction.endDate.toDateString() %> at <%= transaction.endTime %></p>
+        <p><strong>Duration:</strong> <%= transaction.durationText %></p>
+        <p><strong>Status:</strong> 
+          <span style="display: inline-block; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 600; color: white; background-color: #16a34a; border-radius: 9999px;">
+            <%= transaction.status %>
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Payment Info -->
+    <div style="margin-bottom: 2rem;">
+      <h2 style="font-size: 1.125rem; font-weight: 600; color: #800000; margin-bottom: 0.5rem;">Payment Info</h2>
+      <table style="width: 100%; font-size: 0.875rem; border: 1px solid #d1d5db; border-radius: 0.5rem; overflow: hidden; border-collapse: collapse;">
+        <thead style="background-color: #800000; color: white;">
+          <tr>
+            <th style="text-align: left; padding: 0.5rem 1rem;">Method</th>
+            <th style="text-align: left; padding: 0.5rem 1rem;">Amount</th>
+            <th style="text-align: left; padding: 0.5rem 1rem;">Paid At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background-color: #f9fafb;">
+            <td style="padding: 0.5rem 1rem; border-top: 1px solid #e5e7eb;"><%= transaction.method %></td>
+            <td style="padding: 0.5rem 1rem; border-top: 1px solid #e5e7eb;">Rs. <%= transaction.amount.toLocaleString() %></td>
+            <td style="padding: 0.5rem 1rem; border-top: 1px solid #e5e7eb;"><%= new Date(transaction.paidAt).toLocaleString() %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      Thank you for choosing our garage!<br>
+      Address: 123 Main Street, City, Country | Phone: (123) 456-7890 | Email: garage@example.com
+    </div>
+  </div>
+
+</body>
+</html>
